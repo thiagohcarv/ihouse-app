@@ -1,0 +1,41 @@
+<!--
+  Generated template for the MyjobsPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar>
+    <!-- <ion-title>My Jobs</ion-title> -->
+    <img src="assets/imgs/ihouse_logo.png" width="50%" alt="">
+  </ion-navbar>
+</ion-header>
+
+<ion-content no-padding padding-left padding-right >
+    <div class="body">
+      <ion-item *ngIf="!myJobs">
+        <h1>Please!</h1>
+        <h3>You still don't have jobs</h3>
+      </ion-item>
+      <ion-list *ngIf="myJobs">
+        <ion-item *ngFor="let job of myJobs" (click)="onVerDetalhes(job)">
+          <ion-avatar item-start>
+            <img [src]="job.img">
+          </ion-avatar>
+          <h1>{{job.nome}}</h1>
+          <ion-row>
+            <ion-col>
+                <p>{{job.data}}</p>
+            </ion-col>
+            <ion-col>
+                <ion-icon name="star" style="color: rgb(252, 214, 0);"></ion-icon>
+                <ion-icon name="star" style="color: rgb(252, 214, 0);"></ion-icon>
+                <ion-icon name="star" style="color: rgb(252, 214, 0);"></ion-icon>
+                <ion-icon name="star" style="color: rgb(0, 0, 0);"></ion-icon>
+                <ion-icon name="star" style="color: rgb(0, 0, 0);"></ion-icon>
+            </ion-col>
+          </ion-row>
+        </ion-item>
+      </ion-list>
+    </div>
+</ion-content>

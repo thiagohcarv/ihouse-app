@@ -1,0 +1,44 @@
+page-payment-services {
+    
+    .content{
+        height: 100%;
+        width: 100%;
+        background-color: color($colors,verde);
+
+        .container{
+            height: 100%;
+        width: 100%;
+        background-color: #fff;;
+        }
+
+        .total{
+            margin: auto;
+            border: solid 2px #f6f6f6;
+            width: 20em;
+            height: 4em;
+            border-radius: 4em;
+
+            .total-total{
+                margin: auto;
+                color: #666;
+                font-size: 16px;
+            }
+        }
+
+        .paid{
+            margin: auto;
+            background-color: color($colors, primary);
+            width: 20em;
+            height: 4em;
+            border-radius: 4em;
+
+            .paid-mode{
+                margin: auto;
+                color: color($colors, light);
+                font-size: 18px;
+            }
+        }
+    }
+
+
+}
