@@ -1,7 +1,0 @@
-{
-  "name": "ihouseservice",
-  "integrations": {
-    "cordova": {}
-  },
-  "type": "ionic-angular"
-}
