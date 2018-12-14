@@ -1,14 +1,9 @@
-import { DialogoProvider } from './../../providers/dialogo/dialogo';
-import { ServicosProvider } from './../../providers/servicos/servicos';
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController } from 'ionic-angular';
 
-/**
- * Generated class for the SearchJobsCatPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { ApiProvider } from '../../providers/api/api';
+import { FunctionsProvider } from '../../providers/functions/functions';
+
 
 @IonicPage()
 @Component({
@@ -17,29 +12,24 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class SearchJobsCatPage {
 
-  categorias: any[];
+  categorias: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private dialogo:DialogoProvider, private servicoProvider:ServicosProvider) {
-  }
-
-  ionViewCanEnter(){
-   this.servicoProvider.getListCategoreServices().then(res=>{
-     if(res){
-       this.categorias = res
-     }else{
-      this.dialogo.presentAlert("Loading Faield");
-     }
-   }).catch(err=>{
-     console.log(err);
-   });
-  }
+  constructor(
+    private api: ApiProvider,
+    private navCtrl: NavController,
+    private functions: FunctionsProvider
+  ) { }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad SearchJobsCatPage');
+    this.functions.loading()
+    this.api.get('category').then(data => {
+      this.categorias = data
+      this.functions.loader.dismiss()
+    }).catch(() => this.functions.loader.dismiss())
   }
 
   onSelectCategory(cat:any){
-    this.navCtrl.push('ListJobsPage', {data: cat});
+    this.navCtrl.push('ListJobsPage', {id: cat.id, thumb: cat.thumb});
   }
 
 }

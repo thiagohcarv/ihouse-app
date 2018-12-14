@@ -20,15 +20,14 @@ export class SelectDateServicePage {
   dateSeleced: any;
   horaSelected: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private dialogo:DialogoProvider) {
-  }
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    private dialogo:DialogoProvider
+  ) { }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad SelectDateServicePage');
-  }
-
-  ionViewCanEnter(){
-   return this.categoria = this.navParams.data.categoria;
+  ionViewWillEnter(){
+    this.categoria = this.navParams.data.categoria;
   }
 
   onNext(){
@@ -40,12 +39,10 @@ export class SelectDateServicePage {
         hora: this.horaSelected,
         servico: this.categoria
       }
-
-      this.navCtrl.push('PaymentServicesPage', {servico : servico})
-
+      this.navCtrl.push('PaymentServicesPage', {servico: servico})
     }
   }
 
-  
+
 
 }

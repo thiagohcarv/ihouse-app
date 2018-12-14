@@ -10,9 +10,7 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class ServicosProvider {
 
-  constructor(private http: HttpClient) {
-    console.log('Hello ServicosProvider Provider');
-  }
+  constructor(private http: HttpClient) { }
 
   getListServices():Promise<any>{
     return this.http.get<any>("assets/mock/mockServicos.json").toPromise();

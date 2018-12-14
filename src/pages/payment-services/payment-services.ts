@@ -1,13 +1,10 @@
-import { UsuarioProvider } from '../../providers/usuario/usuario';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
-/**
- * Generated class for the PaymentSetvicesPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { ApiProvider } from '../../providers/api/api';
+import { StorageProvider } from '../../providers/storage/storage';
+import { FunctionsProvider } from '../../providers/functions/functions';
+
 
 @IonicPage()
 @Component({
@@ -16,22 +13,39 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class PaymentServicesPage {
 
-  serviceCompleto: any[];
-  public nomeUsuario: any;
-  public nome;
+  serviceCompleto: any;
+  private name: string;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private usuarioProvider:UsuarioProvider) {
-    this.nomeUsuario = Object( this.usuarioProvider.usuarioLogado);
-    this.nome = this.nomeUsuario.nome;
+  constructor(
+    private api: ApiProvider,
+    private navParams: NavParams,
+    private navCtrl: NavController,
+    private storage: StorageProvider,
+    private functions: FunctionsProvider
+  ) {
+    this.name = this.storage.getUser().user.name
   }
 
-  ionViewCanEnter(){
-   return this.serviceCompleto = this.navParams.data.servico;
+  ionViewDidLoad(){
+    this.serviceCompleto = this.navParams.data.servico;
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad PaymentSetvicesPage');
-    console.log(this.serviceCompleto);
+  pay(){
+    this.functions.loading()
+    let services = []
+    this.serviceCompleto.servico.services.forEach(val => {
+      services.push(val.id)
+    })
+    const data = {
+      services: services,
+      datetime: this.serviceCompleto.data+' '+this.serviceCompleto.hora+':00',
+      price: this.serviceCompleto.servico.price,
+      payed: true
+    }
+    this.api.post('job', data).then(()=>{
+      this.functions.loader.dismiss()
+      this.functions.message('Success! Service Payed.')
+      this.navCtrl.setRoot('HomePage')
+    }).catch(() => this.functions.loader.dismiss())
   }
-
 }

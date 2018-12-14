@@ -1,6 +1,8 @@
-import { UsuarioProvider } from '../../providers/usuario/usuario';
 import { Component } from '@angular/core';
 import { NavController, IonicPage } from 'ionic-angular';
+
+import { LoginPage } from '../login/login';
+import { StorageProvider } from '../../providers/storage/storage';
 
 @IonicPage()
 @Component({
@@ -9,41 +11,40 @@ import { NavController, IonicPage } from 'ionic-angular';
 })
 export class HomePage {
 
-  public nomeUsuario: any;
-  public nome;
-  
+  private name: string;
 
-  constructor(public navCtrl: NavController, private usuarioProvider:UsuarioProvider) {
-    
+  constructor(
+    private navCtrl: NavController,
+    private storage: StorageProvider
+  ) {
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad HomePage');
-    this.nomeUsuario = Object( this.usuarioProvider.usuarioLogado);
-    this.nome = this.nomeUsuario.nome;
+  ionViewWillEnter() {
+    if (!this.storage.getUser()) {
+      this.storage.removeUser();
+      this.navCtrl.setRoot(LoginPage)
+    }else{
+      this.name = this.storage.getUser().user.name;
+    }
   }
 
   onMensagens(){
-    console.log("onMensagens()");
     this.navCtrl.push('MensagensPage');
   }
 
   onMyJobs(){
-    console.log("onMyJobs()");
     this.navCtrl.push('MyjobsPage');
   }
 
   onOfferJobs(){
     this.navCtrl.push('CategoriaServicosPage');
-    console.log("onOfferJobs()");
   }
 
   onSettings(){
-    console.log("onSettings()");
+    this.navCtrl.push('CadastroClientePage')
   }
 
   onSearchJobs(){
-    console.log("onSearchJobs()");
     this.navCtrl.push('SearchJobsCatPage');
   }
 

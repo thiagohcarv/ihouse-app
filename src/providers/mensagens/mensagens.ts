@@ -10,9 +10,7 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class MensagensProvider {
 
-  constructor(public http: HttpClient) {
-    console.log('Hello MensagensProvider Provider');
-  }
+  constructor(public http: HttpClient) { }
 
   getListMensagens():Promise<any>{
     return this.http.get("assets/mock/mockMensagens.json").toPromise();

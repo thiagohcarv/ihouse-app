@@ -16,47 +16,62 @@
 // automatically applied to the <body> element in the app.
 
 .toolbar{
+  .toolbar-background{
+    background-color: color($colors, verde);
+  }
+  .toolbar-title{
+    color: #f6f6f6;
+  }
+  .bar-buttons{
+    color: #f6f6f6;
+  }
+  .back-button{
+    color: #f6f6f6;
 
-    
-    
-    .toolbar-background{
-        background-color: color($colors, verde);
-        
+    .back-button-text{
+      display: none;
     }
-    .toolbar-title{
-        color: #f6f6f6;
-    }
-    .bar-buttons{
-        color: #f6f6f6;
-    }
-
-    .back-button{
-        color: #f6f6f6;
-        
-        .back-button-text{
-            display: none;
-        }
-    }
+  }
 }
 
 .content.menu{
-    background-color: color($colors, verde);
+  background-color: color($colors, verde);
 
-    img{
-        margin-top: 15px;
-    }
+  img{
+    margin-top: 15px;
+  }
 
-    .logout{
-        margin-left: 5px !important;
-    }
+  .logout{
+    margin-left: 5px !important;
+  }
 
-    .list{
-        background-color: transparent;
-        .item{
-            background-color: transparent !important;
-            color: #f6f6f6;
-            font-size: 18px;
-            text-transform: uppercase;
-        }
+  .list{
+    background-color: transparent;
+    .item{
+      background-color: transparent !important;
+      color: #f6f6f6;
+      font-size: 18px;
+      text-transform: uppercase;
     }
+  }
+}
+
+.form-default{
+  .item{
+    background: transparent;
+    padding-left: 0;
+    .item-inner{ padding-right: 0; border: 0; box-shadow: none !important; }
+    .input{
+      margin-bottom: 16px;
+      border: solid 2px #f6f6f6;
+      background-color: #fff;
+      border-radius: 2em;
+      box-shadow: 0 3px 5px #ccc;
+      input{
+        text-align: center;
+        font-weight: 700;
+        color: color($colors, dark);
+      }
+    }
+  }
 }

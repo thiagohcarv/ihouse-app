@@ -1,14 +1,9 @@
-import { DialogoProvider } from '../../providers/dialogo/dialogo';
-import { MensagensProvider } from '../../providers/mensagens/mensagens';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
-/**
- * Generated class for the MensagensPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { ApiProvider } from '../../providers/api/api';
+import { StorageProvider } from '../../providers/storage/storage';
+import { FunctionsProvider } from '../../providers/functions/functions';
 
 @IonicPage()
 @Component({
@@ -17,32 +12,32 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class MensagensPage {
 
-  mensagens: any[];
+  private job_id: number;
+  private mensagens: any = [];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private dialogo:DialogoProvider, private mensageProvider: MensagensProvider) {
-  }
+  constructor(
+    private api: ApiProvider,
+    private navParams: NavParams,
+    private navCtrl: NavController,
+    private storage: StorageProvider,
+    private functions: FunctionsProvider
+  ) { }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad MensagensPage');
-    this._onLoadMensagens();
+    this.functions.loading()
+    let data: any = Object()
+    if (this.navParams.data.job_id) {
+      this.job_id = this.navParams.data.job_id
+      data.job = this.job_id
+    }
+    this.api.get('message', data).then(data => {
+      this.mensagens = data
+      this.functions.loader.dismiss()
+    }).catch(() => this.functions.loader.dismiss())
   }
 
-  _onLoadMensagens(){
-    this.mensageProvider.getListMensagens().then(res =>{
-      console.log(res);
-      if(res){
-        this.mensagens = res;
-      }else{
-        this.dialogo.presentAlert("Falha ao carregar as suas mensagens");
-      }
-    }).catch(err =>{
-      console.log(err);
-      this.dialogo.presentAlert("Falha ao carregar as suas mensagens");
-    });
-  }
-
-  onVerMensagemCompleta(msg:any){
-    this.dialogo.presentMessage(msg.title, msg.mensagem);
+  showMessage(msg:any){
+    this.functions.showAlert(msg.title, msg.mensagem);
   }
 
 }

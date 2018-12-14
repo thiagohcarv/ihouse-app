@@ -24,16 +24,16 @@
               <button ion-item no-padding no-lines (click)="onSelectCategory(cat)" >
                 <div align="center">
                   <div class="image" >
-                    <img [src]="cat.img" alt="">
+                    <img src="data:image/png;base64,{{ cat.thumb }}" [alt]="cat.name">
                   </div>
-                  <h2>{{cat.categoria}}</h2>
-                </div>    
+                  <h2>{{cat.name}}</h2>
+                </div>
               </button>
             </div>
           </ion-row>
       </ion-grid>
     </ion-list>
   </div>
-  
+
 
 </ion-content>

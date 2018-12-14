@@ -1,58 +1,48 @@
-import { UsuarioProvider } from '../../providers/usuario/usuario';
-import { DialogoProvider } from '../../providers/dialogo/dialogo';
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { NavController } from 'ionic-angular';
+import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 
-/**
- * Generated class for the LoginPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { ApiProvider } from '../../providers/api/api';
+import { StorageProvider } from '../../providers/storage/storage';
+import { FunctionsProvider } from '../../providers/functions/functions';
 
-@IonicPage()
 @Component({
   selector: 'page-login',
   templateUrl: 'login.html',
 })
 export class LoginPage {
 
-  public email: string = "";
-  public senha: string = "";
-  public zipCode: string;
+  private form: FormGroup
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private dialogo: DialogoProvider, private usuarioProvider:UsuarioProvider) {
-  }
-
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad LoginPage');
-  }
-
-  onLogin(){
-    console.log("senha: ", this.senha, "email: ", this.email);
-    if(this.email !== "" && this.senha !== ""){
-      this.usuarioProvider.loginUsuario(
-        {
-          email: this.email.toLocaleLowerCase(),
-	        senha: this.senha.toLocaleLowerCase()
-        }
-      ).then((res)=>{
-        console.log(res);
-        if(res){
-          this.navCtrl.setRoot('HomePage');        
-        }else{
-          this.dialogo.presentAlert("Usuário ou senha inválidos.");
-        }        
-      });
-    }else{
-      this.dialogo.presentAlert("Informe o Login e Senha para acessar.")
+  constructor(
+    private api: ApiProvider,
+    private navCtrl: NavController,
+    private formBuilder: FormBuilder,
+    private storage: StorageProvider,
+    private functions: FunctionsProvider
+  ) {
+    if (this.storage.getUser()) {
+      this.navCtrl.setRoot('HomePage')
     }
+    this.form = this.formBuilder.group({
+      email: ['', Validators.required],
+      password: ['', Validators.required],
+      zipcode: [{value: '', disabled: true}],
+    })
   }
-    
 
-  onSingIn(){ 
-    console.log("Cadastrar novo usuário.");
+  login(){
+    this.functions.loading()
+    let data = this.form.value
+    this.api.post('login', data).then(data => {
+      this.storage.setUser(data)
+      this.functions.loader.dismiss()
+      this.functions.message('Connected!')
+      this.navCtrl.setRoot('HomePage');
+    }).catch(() => this.functions.loader.dismiss());
+  }
+
+  register(){
     this.navCtrl.push('CadastroClientePage');
   }
-
 }

@@ -1,41 +1,10 @@
 page-login {
-
-
-    .content{
-        background-color: color($colors, verde);
-
-        .body{
-            height: 34em;
-            background-color: transparent;
-            
-            color: #f6f6f6;
-    
-            .item{
-                background: transparent;
-            }
-    
-            .input{
-                border: solid 2px #f6f6f6;
-                background-color: #fff;
-                border-radius: 2em;
-                text-align: center;
-    
-                .text-input{
-                    text-align: center; 
-                }
-            }
-        }
-
-        .buttons-footer{
-            width: 100%;
-            color: #fff;
-            background-color: transparent;
-
-            .button{
-                border: 0;
-                color: #fff;
-            }
-        }
-    }
-
+  .content{
+    background-color: color($colors, verde);
+    h5{ color: color($colors, light);  }
+  }
+  .footer{
+    background-color: color($colors, light);
+    .button{ border: 0; }
+  }
 }

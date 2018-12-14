@@ -1,64 +1,25 @@
-<!--
-  Generated template for the LoginPage page.
+<ion-content padding>
+  <div class="bloco-logo" padding text-center>
+    <img src="assets/imgs/splash_logo.png" alt="iHouse Service">
+  </div>
 
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
-<!-- <ion-header>
-
-  <ion-navbar>
-    <ion-title>login</ion-title>
-  </ion-navbar>
-
-</ion-header> -->
-
-
-<ion-content>
-  <ion-item class="body" no-lines>
-    <div class="bloco-logo" padding>
-      <ion-row>
-        <ion-col col-8 offset-2>
-            <img src="assets/imgs/splash_logo.png" whi alt="">
-        </ion-col>
-      </ion-row>
+  <form [formGroup]="form" class="form-default" padding (ngSubmit)="login()">
+    <ion-item no-lines>
+      <ion-input type="email" formControlName="email" placeholder="Email Adress" text-center></ion-input>
+    </ion-item>
+    <ion-item no-lines>
+      <ion-input type="password" formControlName="password" placeholder="Password" text-center></ion-input>
+    </ion-item>
+    <div margin-bottom text-center>
+      <h5>or</h5>
     </div>
-  
-    <div class="main-container" padding>
-      <ion-row padding>
-        <ion-item no-lines>
-          <ion-input type="email" [(ngModel)]="email" placeholder="Email Adress"></ion-input>
-        </ion-item>
-      </ion-row>
-      <ion-row padding-left padding-right>
-        <ion-item no-lines>
-          <ion-input type="password" [(ngModel)]="senha" placeholder="Password"></ion-input>
-        </ion-item>
-      </ion-row>
-      <ion-row padding-left padding-right >
-        <ion-col col-2 offset-5 no-lines aling="center">
-          <p>Or</p>
-        </ion-col>
-      </ion-row>
-      <ion-row padding-left padding-right>
-        <ion-item no-lines>
-          <ion-input type="tel" placeholder="Zip Code" [(ngModel)]="zipCode" disabled></ion-input>
-        </ion-item>
-      </ion-row>
-      <ion-row>
-        <ion-col col-10 offset-1>
-            <button ion-button round block (click)="onLogin()">Login</button>
-        </ion-col>
-      </ion-row>
-    </div>
-  </ion-item>
-  <ion-item class="buttons-footer" no-lines>
-    <ion-col >
-      <button ion-button outline>Forgot password?</button>
-    </ion-col>
-    |
-    <ion-col >
-      <button ion-button outline (click)="onSingIn()" >Register here</button>
-    </ion-col>
-  </ion-item>
-
+    <ion-item no-lines>
+      <ion-input type="tel" placeholder="Zip Code" formControlName="zipcode" text-center></ion-input>
+    </ion-item>
+    <button ion-button round block type="submit" [disabled]="form.invalid">Login</button>
+  </form>
 </ion-content>
+<ion-footer text-center padding>
+  <button ion-button outline color="dark">Forgot password?</button>
+  <button ion-button outline color="dark" (click)="register()" >Register here</button>
+</ion-footer>

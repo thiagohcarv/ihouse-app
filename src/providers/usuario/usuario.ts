@@ -14,27 +14,25 @@ export class UsuarioProvider {
   private path: string = "http://localhost:8080/usuario";
   private mock:boolean = true;
 
- 
-   constructor(public http: HttpClient) {
-    console.log('Hello UsuarioProvider Provider');    
-  }
+
+  constructor(public http: HttpClient) { }
 
   cadastrarUsuarioCliente(usuario:any):Promise<object>{
     if(!this.mock){
-      return this.http.post(this.path, 
+      return this.http.post(this.path,
         {
           nome: usuario.nome,
           email: usuario.email,
-          telefone: usuario.tel,  
+          telefone: usuario.tel,
           endereco: usuario.endereco,
           senha: usuario.senha
-        }).toPromise(); 
+        }).toPromise();
     }
     return this.http.get("assets/mock/usuario.json").toPromise();
   }
 
   loginUsuario(usuario:any):Promise<any>{
-    
+
     if(!this.mock){
       return this.http.post<any>(this.path + "/login", {
         email: usuario.email,
@@ -45,7 +43,7 @@ export class UsuarioProvider {
         }
         return;
       }).catch((err)=>{
-        console.error(err);        
+        console.error(err);
       });
     }else{
       return this.http.get<any>("assets/mock/usuario.json").toPromise().then((res)=>{
@@ -56,7 +54,7 @@ export class UsuarioProvider {
         }
         return;
       }).catch((err)=>{
-        console.error(err);        
+        console.error(err);
       });
     }
   }

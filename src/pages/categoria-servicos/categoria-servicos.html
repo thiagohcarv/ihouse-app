@@ -23,10 +23,10 @@
               <button ion-item no-padding no-lines (click)="onSelectCategory(cat)" >
                 <div align="center">
                   <ion-avatar >
-                    <img [src]="cat.img" alt="">
+                    <img src="data:image/png;base64,{{ cat.thumb }}" [alt]="cat.name">
                   </ion-avatar>
-                  <h2>{{cat.categoria}}</h2>
-                </div>    
+                  <h2>{{ cat.name }}</h2>
+                </div>
               </button>
             </ion-col>
           </ion-row>

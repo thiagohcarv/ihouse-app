@@ -17,11 +17,11 @@
   <div class="container" padding>
     <ion-item no-padding padding-top>
       <div align="center">
-        <h1>Mr. {{nome}}</h1>
+        <h1>Mr. {{name}}</h1>
         <p>This was your job</p>
       </div>
     </ion-item>
-    <ion-item lines no-padding>
+    <ion-item lines no-padding *ngIf="serviceCompleto">
         <ion-grid class="header-table-service">
           <ion-row>
             <ion-col col-2>
@@ -35,36 +35,31 @@
             </ion-col>
           </ion-row>
           <hr>
-          <ion-row>
+          <ion-row *ngFor="let service of serviceCompleto.servico.services">
             <ion-col col-2>
-              <p>{{serviceCompleto.servico.id}}</p>
+              <p>{{service.id}}</p>
             </ion-col>
             <ion-col col-7>
-              <p>{{serviceCompleto.servico.categoria}}</p>
+              <p>{{service.name}}</p>
             </ion-col>
             <ion-col col-3>
-              <p>$ {{serviceCompleto.servico.price}}</p>
+              <p>$ {{service.price}}</p>
             </ion-col>
           </ion-row>
         </ion-grid>
     </ion-item>
     <br>
     <p>Total:</p>
-    <ion-row class="total" padding>
+    <ion-row class="total" padding *ngIf="serviceCompleto">
       <div class="total-total">
-        <b>{{serviceCompleto.servico.price}}</b>
+        <b>$ {{serviceCompleto.servico.price}}</b>
       </div>
     </ion-row>
     <br>
     <p>Pay with:</p>
-    <ion-row class="paid" padding>      
-      <div class="paid-mode">
-        <b>PayPal</b>
-      </div>
-    </ion-row>
-
-    
-
+    <div padding-left padding-right>
+      <button ion-button large round block (click)="pay()">PayPal</button>
+    </div>
   </div>
 
 </ion-content>

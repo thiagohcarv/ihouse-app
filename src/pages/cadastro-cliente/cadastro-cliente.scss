@@ -1,38 +1,11 @@
 page-cadastro-cliente {
-    .content-md{
-        background-color: color($colors, verde);
-        color: #f6f6f6;
-
-        .body{
-            background-color: #f6f6f6;
-            height: 35em;
-            width: 91%;
-            position: absolute;
-            .item-md{
-                background: transparent;
-            }
-    
-            .input-md{
-                border: solid 2px #f6f6f6;
-                background-color: #fff;
-                border-radius: 2em;
-                text-align: center;
-    
-                .text-input-md{
-                    text-align: center; 
-                }
-            }
-        }        
-
-        .buttons-footer{
-            background-color: #fff;
-            height: 5em;
-            padding-top: 1em;
-            position: relative;
-
-            .button-md{
-                border: 0;
-            }
-        }
+  .content{
+    background-color: color($colors, verde);
+    img{ max-width: 45%; }
+    .body{
+      background-color: #fff;
+      padding-bottom: 2rem;
+      box-shadow: 0 8px 5px -5px #777;
     }
+  }
 }
