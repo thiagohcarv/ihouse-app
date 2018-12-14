@@ -1,6 +1,6 @@
 <ion-header>
-  <ion-navbar>
-    <img src="assets/imgs/ihouse_logo.png" width="50%" alt="">
+  <ion-navbar padding text-center>
+    <img src="assets/imgs/ihouse_logo.png" width="70%" alt="">
   </ion-navbar>
 </ion-header>
 
@@ -8,7 +8,7 @@
   <div class="container" *ngIf="job">
     <ion-item no-padding padding-top>
       <div margin-bottom text-center>
-        <h1 margin-bottom>You were Invited</h1>
+        <h1 *ngIf="is_functionary" margin-bottom>You were Invited</h1>
         <h1 margin-bottom>Service Job</h1>
       </div>
 
@@ -25,12 +25,12 @@
     </ion-item>
 
     <div margin padding>
-      <div *ngIf="!is_accept">
+      <div *ngIf="!is_accept && is_functionary">
         <button ion-button round block margin-bottom large color="verde" (click)="accept()">Accept</button>
         <button ion-button round block large color="verde" (click)="onBack()">Decline</button>
       </div>
       <div *ngIf="is_accept">
-        <div *ngIf="!job.end_datetime">
+        <div *ngIf="!job.end_datetime && is_functionary">
           <button ion-button round block large margin-bottom color="verde" (click)="start()" [disabled]="job.start_datetime">Start Job</button>
           <button ion-button round block large color="verde" (click)="finish()" [disabled]="!job.start_datetime">Finish Job</button>
         </div>

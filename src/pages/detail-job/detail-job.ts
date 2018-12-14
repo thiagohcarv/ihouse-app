@@ -15,6 +15,7 @@ export class DetailJobPage {
 
   private id: number
   private job: any
+  private is_functionary: boolean = false
   private is_accept: boolean = false
 
   constructor(
@@ -27,7 +28,12 @@ export class DetailJobPage {
 
   ionViewDidLoad() {
     this.functions.loading()
+
     this.id = this.navParams.data.id
+    if (this.storage.getUser().functionary) {
+      this.is_functionary = true
+    }
+
     this.api.get('job/'+this.id).then(data => {
       this.job = data
       this.is_accept = this.job.is_accept

@@ -56,6 +56,16 @@
   }
 }
 
+.header{
+  box-shadow: 0 2px 20px 0px #656565;
+  .toolbar-background{
+    border: none;
+  }
+  &::after{
+    display: none;
+  }
+}
+
 .form-default{
   .item{
     background: transparent;
