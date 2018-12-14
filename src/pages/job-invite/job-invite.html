@@ -1,43 +1,49 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>Invite</ion-title>
+    <ion-buttons end *ngIf="!is_view">
+      <button ion-button icon-only (click)="declineJob()">
+        <ion-icon item-right color="light" name="close"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title *ngIf="is_view">{{'INVITE' | translate }}</ion-title>
+    <ion-title *ngIf="!is_view">{{'DETAIL' | translate }}</ion-title>
   </ion-navbar>
 </ion-header>
 <ion-content padding>
   <div class="elevation-content">
-    <div class="title">You are invited</div>
-    <div class="title">Service Details</div>
+    <div class="title" *ngIf="is_view">{{'YOU_ARE_INVITED' | translate }}</div>
+    <div class="title">{{'SERVICE_DETAILS' | translate }}</div>
     <hr>
     <div class="description-content" padding>
       <ion-row>
-        <ion-col col-4>
-          <span class="description">Type:</span>
+        <ion-col col-5>
+          <span class="description">{{'TYPE' | translate }}:</span>
         </ion-col>
-        <ion-col col-8>
+        <ion-col col-7>
           <span class="description"><span>{{jobDetail.category.name}}</span></span>
         </ion-col>
       </ion-row>
       <ion-row *ngIf="employer">
-        <ion-col col-4>
-          <span class="description">Adress:</span>
+        <ion-col col-5>
+          <span class="description">{{'ADDRESS' | translate }}:</span>
         </ion-col>
-        <ion-col col-8>
+        <ion-col col-7>
           <span class="description"><span>{{employer.address}}</span></span><br>
         </ion-col>
       </ion-row>
       <ion-row>
-        <ion-col col-4>
-          <span class="description">Time:</span>
+        <ion-col col-5>
+          <span class="description">{{'VALUE' | translate }}:</span>
         </ion-col>
-        <ion-col col-8>
+        <ion-col col-7>
           <span class="description"><span>${{jobDetail.category.value}},00</span></span><br>
         </ion-col>
       </ion-row>
       <ion-row>
-        <ion-col col-4>
-          <span class="description">Value:</span>
+        <ion-col col-5>
+          <span class="description">{{'TIME' | translate }}:</span>
         </ion-col>
-        <ion-col col-8>
+        <ion-col col-7>
           <span class="description"><span>{{dateTime}}</span></span><br>
         </ion-col>
       </ion-row>
@@ -45,16 +51,16 @@
     <hr>
     <ion-row class="paid acept" padding>
         <div class="paid-mode" (click)="aceptJob()">
-          <b>Acept</b>
+          <b>{{'ACCEPT' | translate }}</b>
         </div>
       </ion-row>
     <ion-row class="paid decline" padding>
       <div class="paid-mode" (click)="declineJob()">
-        <b>Decline</b>
+        <b>{{'DECLINE' | translate }}</b>
       </div>
     </ion-row>
   </div>
-  
+
 
 
 </ion-content>

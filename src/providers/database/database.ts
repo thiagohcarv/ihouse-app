@@ -27,13 +27,13 @@ export class DatabaseProvider {
   }
 
   getJobsByEmployer<T>(id: string): Observable<T[]> {
-    return this.db.list<T>("/jobs", (ref) => 
+    return this.db.list<T>("/jobs", (ref) =>
       ref.orderByChild('employerID').equalTo(id)
     ).valueChanges();
   }
 
   getJobsByEmployee<T>(id: string): Observable<T[]> {
-    return this.db.list<T>("/jobs", (ref) => 
+    return this.db.list<T>("/jobs", (ref) =>
       ref.orderByChild('employee/id').equalTo(id)
     ).valueChanges();
   }

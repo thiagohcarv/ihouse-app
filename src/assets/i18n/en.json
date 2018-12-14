@@ -27,5 +27,14 @@
     "DONT_JOBS" : "You still don't have jobs",
     "USER_BLOCK" : "User blocked!",
     "AWAIT" : "Wait for the unlock.",
-    "SELECT_SKILLS" : "Select your skills"
+    "SELECT_SKILLS" : "Select your skills",
+    "INVITE": "Invite",
+    "DETAIL": "Detail",
+    "SERVICE_DETAILS": "Service Detail",
+    "YOU_ARE_INVITED": "You are invited",
+    "TYPE": "Type",
+    "VALUE": "Value",
+    "TIME": "Time",
+    "ACCEPT": "Accept",
+    "DECLINE": "Decline"
 }

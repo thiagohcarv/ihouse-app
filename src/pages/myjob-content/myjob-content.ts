@@ -45,7 +45,7 @@ export class MyJobContentPage {
       mediaType: this.camera.MediaType.PICTURE
     }
     this.camera.getPicture(options).then((imageData) => {
-      let photo = "data:image/jpeg;base64," + imageData;  
+      let photo = "data:image/jpeg;base64," + imageData;
       this.base64.encodeFile(photo).then((imgBase64: string) => {
         console.log("encodeFile", imgBase64);
         this.myJob.urlPhoto = imgBase64;
@@ -69,6 +69,10 @@ export class MyJobContentPage {
       this.myJob.urlPhoto = this.urlPhoto;
       this.update();
     }
+  }
+
+  pay(){
+    console.log('function pay')
   }
 
   update(){

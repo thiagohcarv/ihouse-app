@@ -16,7 +16,7 @@
 
   <div class="container" padding>
     <ion-item no-padding padding-top>
-      <div align="center">
+      <div align="center" *ngIf="userData">
         <h1>{{userData.name}}</h1>
         <p>This was your job</p>
       </div>
@@ -56,12 +56,14 @@
       </div>
     </ion-row>
     <br>
-    <p>Paid with:</p>
-    <ion-row class="paid" padding>      
-      <div class="paid-mode">
-        <b>PayPal</b>
-      </div>
-    </ion-row>
+    <div *ngIf="!myJob.paid">
+      <p>Paid with:</p>
+      <ion-row class="paid" padding>
+        <div class="paid-mode" (click)="pay()">
+          <b>PayPal</b>
+        </div>
+      </ion-row>
+    </div>
     <div *ngIf="myJob.hasAccepted && !myJob.hasCompleted">
       <ion-item no-line>
         <ion-avatar item-start>
@@ -74,13 +76,13 @@
       <div class="img">
           <img *ngIf="!!myJob.urlPhoto" [src]="myJob.urlPhoto" width="250">
       </div>
-      <ion-row class="paid"  *ngIf="view" padding>      
+      <ion-row class="paid"  *ngIf="view" padding>
         <div class="paid-mode" (click)="addPhoto()">
           <b>Add Photo</b>
         </div>
       </ion-row>
       <br>
-      <ion-row class="paid"  *ngIf="view" padding>      
+      <ion-row class="paid"  *ngIf="view" padding>
         <div class="paid-mode" (click)="completeJob()">
         <b>Complete Job</b>
       </div>
@@ -88,12 +90,12 @@
     </div>
 
     <br>
-    <ion-row class="paid" *ngIf="!view" padding>      
+    <ion-row class="paid" *ngIf="!view" padding>
         <div class="paid-mode" (click)="back()">
         <b>Back</b>
       </div>
     </ion-row>
-    
+
 
   </div>
 

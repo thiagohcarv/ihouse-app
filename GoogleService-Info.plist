@@ -7,21 +7,21 @@
 	<key>AD_UNIT_ID_FOR_INTERSTITIAL_TEST</key>
 	<string>ca-app-pub-3940256099942544/4411468910</string>
 	<key>CLIENT_ID</key>
-	<string>720602884263-772kt954ejp3ratol2va4p5j5k6rgsr0.apps.googleusercontent.com</string>
+	<string>984665681454-68ufl7v0ruatq8kubl1pqa1d7rkh8f77.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.720602884263-772kt954ejp3ratol2va4p5j5k6rgsr0</string>
+	<string>com.googleusercontent.apps.984665681454-68ufl7v0ruatq8kubl1pqa1d7rkh8f77</string>
 	<key>API_KEY</key>
-	<string>AIzaSyBA-uE5vX9ombAXdVAnviFtPt9YgZk8fS8</string>
+	<string>AIzaSyClnD3-gqf0_eZOUAezUQQRGAE87MJ807g</string>
 	<key>GCM_SENDER_ID</key>
-	<string>720602884263</string>
+	<string>984665681454</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
 	<string>com.service.ihouse</string>
 	<key>PROJECT_ID</key>
-	<string>ihouse-8ddbe</string>
+	<string>tiago-ihouse</string>
 	<key>STORAGE_BUCKET</key>
-	<string>ihouse-8ddbe.appspot.com</string>
+	<string>tiago-ihouse.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<true></true>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -33,8 +33,8 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:720602884263:ios:73ca6544c1a9e062</string>
+	<string>1:984665681454:ios:73ca6544c1a9e062</string>
 	<key>DATABASE_URL</key>
-	<string>https://ihouse-8ddbe.firebaseio.com</string>
+	<string>https://tiago-ihouse.firebaseio.com</string>
 </dict>
 </plist>

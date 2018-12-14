@@ -27,5 +27,14 @@
     "DONT_JOBS" : "Você não tem nenhum trabalho",
     "USER_BLOCK" : "Usuário bloqueado!",
     "AWAIT" : "Aguarde o desbloqueio.",
-    "SELECT_SKILLS" : "Selecione suas habilidades"
+    "SELECT_SKILLS" : "Selecione suas habilidades",
+    "INVITE": "Convite",
+    "DETAIL": "Detalhe",
+    "SERVICE_DETAILS": "Detalhes do serviço",
+    "YOU_ARE_INVITED": "Você esta convidado",
+    "TYPE": "Tipo",
+    "VALUE": "Valor",
+    "TIME": "Tempo",
+    "ACCEPT": "Aceitar",
+    "DECLINE": "Recusar"
 }

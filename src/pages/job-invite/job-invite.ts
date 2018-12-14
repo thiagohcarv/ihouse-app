@@ -5,7 +5,7 @@ import { UserInterface } from './../../interfaces/user';
 import { DatabaseProvider } from './../../providers/database/database';
 import { Job } from './../../interfaces/job';
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
 import { User, auth } from 'firebase';
 
 @IonicPage()
@@ -17,20 +17,22 @@ export class JobInvitePage {
   jobDetail: Job;
   employer: UserInterface
   dateTime: string;
+  is_view: boolean;
 
   constructor(
-    public navCtrl: NavController, 
-    public navParams: NavParams, 
-    private db: DatabaseProvider, 
-    private angularFireDB: AngularFireDatabase, 
+    private viewCtrl: ViewController,
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    private db: DatabaseProvider,
+    private angularFireDB: AngularFireDatabase,
     private auth: AuthProvider,
     private dialog: Dialog
     ) {
   }
 
   ionViewWillLoad() {
-    console.log('ionViewDidLoad InvitePage');
     this.jobDetail = this.navParams.data.job;
+    this.is_view = this.navParams.data.view === true || false;
     this.formatDate();
     this.db.getEmployerByID<UserInterface>(this.jobDetail.employerID).subscribe((res: UserInterface) =>{
       console.log(res);
@@ -40,7 +42,7 @@ export class JobInvitePage {
 
   formatDate(){
     let date = new Date(this.jobDetail.timestamp);
-    this.dateTime = date.getMonth() + '/' + date.getDate() + '/' + date.getFullYear() + ' - ' + date.getHours() +':'+date.getMinutes();
+    this.dateTime = date.getDate() + '/' + date.getMonth() + '/' + date.getFullYear() + ' - ' + date.getHours() +':'+date.getMinutes();
   }
 
   aceptJob(){
@@ -58,7 +60,7 @@ export class JobInvitePage {
               this.jobDetail.employee = userData;
               this.db.updateJob(j.key, this.jobDetail).then(res =>{
                 this.dialog.hideLoading()
-                this.navCtrl.popToRoot();
+                this.declineJob()
               }).catch(e => {
                 this.dialog.presentAlert(e);
                 console.log(e);
@@ -68,11 +70,14 @@ export class JobInvitePage {
         }
       })
     });
-    
   }
 
   declineJob(){
-    this.navCtrl.popToRoot();
+    if (this.is_view) {
+      this.navCtrl.popToRoot();
+    }else{
+      this.viewCtrl.dismiss()
+    }
   }
 
 }

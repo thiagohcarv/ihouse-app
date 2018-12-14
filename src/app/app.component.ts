@@ -29,7 +29,7 @@ export class MyApp {
   language: string;
   rootPage: string;
   isAutorized: boolean;
-  photo;
+  photo: any;
 
   pages: PageInterface[] = [
     { icon: "home", title: 'HOME', component: 'HomePage' },

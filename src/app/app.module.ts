@@ -25,12 +25,12 @@ import { DatabaseProvider } from '../providers/database/database';
 
 
 const FIREBASE_OPTIONS: FirebaseOptions = {
-  apiKey: "AIzaSyBWFR82-NDK2Ug3IMv8PAblLsORcOSCl94",
-  authDomain: "ihouse-8ddbe.firebaseapp.com",
-  databaseURL: "https://ihouse-8ddbe.firebaseio.com",
-  projectId: "ihouse-8ddbe",
-  storageBucket: "ihouse-8ddbe.appspot.com",
-  messagingSenderId: "720602884263"
+  apiKey: "AIzaSyArWdzKfzAH9zpkE2SMsBkvIR7Om8qyLE8",
+  authDomain: "tiago-ihouse.firebaseapp.com",
+  databaseURL: "https://tiago-ihouse.firebaseio.com",
+  projectId: "tiago-ihouse",
+  storageBucket: "tiago-ihouse.appspot.com",
+  messagingSenderId: "984665681454"
 };
 
 export function createTranslateLoader(http: HttpClient) {
