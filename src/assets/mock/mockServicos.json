@@ -1,0 +1,119 @@
+[
+    {
+        "categoria": "Categori 1",
+        "servicos" : [
+            {
+                "id": "1",
+                "nome": "Lavador de Carro",
+                "data": "12/05/2018",
+                "price" : "3.500",
+                "img" : ""
+            },{
+                "id": "1",
+                "nome": "Lavador de Carro",
+                "data": "12/05/2018",
+                "price" : "3.500",
+                "img" : ""
+            },{
+                "id": "1",
+                "nome": "Lavador de Carro",
+                "data": "12/05/2018",
+                "price" : "3.500",
+                "img" : ""
+            },{
+                "id": "1",
+                "nome": "Lavador de Carro",
+                "data": "12/05/2018",
+                "price" : "3.500",
+                "img" : ""
+            }
+        ]
+    },{
+        "categoria": "Categori 2",
+        "servicos" : [
+            {
+                "id": "1",
+                "nome": "Lavador de Carro",
+                "data": "12/05/2018",
+                "price" : "3.500",
+                "img" : ""
+            },{
+                "id": "1",
+                "nome": "Lavador de Carro",
+                "data": "12/05/2018",
+                "price" : "3.500",
+                "img" : ""
+            },{
+                "id": "1",
+                "nome": "Lavador de Carro",
+                "data": "12/05/2018",
+                "price" : "3.500",
+                "img" : ""
+            },{
+                "id": "1",
+                "nome": "Lavador de Carro",
+                "data": "12/05/2018",
+                "price" : "3.500",
+                "img" : ""
+            }
+        ]
+    },{
+        "categoria": "Categori 3",
+        "servicos" : [
+            {
+                "id": "1",
+                "nome": "Lavador de Carro",
+                "data": "12/05/2018",
+                "price" : "3.500",
+                "img" : ""
+            },{
+                "id": "1",
+                "nome": "Lavador de Carro",
+                "data": "12/05/2018",
+                "price" : "3.500",
+                "img" : ""
+            },{
+                "id": "1",
+                "nome": "Lavador de Carro",
+                "data": "12/05/2018",
+                "price" : "3.500",
+                "img" : ""
+            },{
+                "id": "1",
+                "nome": "Lavador de Carro",
+                "data": "12/05/2018",
+                "price" : "3.500",
+                "img" : ""
+            }
+        ]
+    },{
+        "categoria": "Categori 4",
+        "servicos" : [
+            {
+                "id": "1",
+                "nome": "Lavador de Carro",
+                "data": "12/05/2018",
+                "price" : "3.500",
+                "img" : ""
+            },{
+                "id": "1",
+                "nome": "Lavador de Carro",
+                "data": "12/05/2018",
+                "price" : "3.500",
+                "img" : ""
+            },{
+                "id": "1",
+                "nome": "Lavador de Carro",
+                "data": "12/05/2018",
+                "price" : "3.500",
+                "img" : ""
+            },{
+                "id": "1",
+                "nome": "Lavador de Carro",
+                "data": "12/05/2018",
+                "price" : "3.500",
+                "img" : ""
+            }
+        ]
+    }
+]

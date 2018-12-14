@@ -1,0 +1,15 @@
+[
+    {
+        "id": "1",
+        "nome": "Lavador de Carro",
+        "data": "12/05/2018",
+        "price" : "3.500",
+        "img" : "assets/imgs/car-wash.jpg"
+    },{
+        "id": "5",
+        "nome": "Baby syter",
+        "data": "15/06/2018",
+        "price" : "1.500",
+        "img" : "assets/imgs/baby-syter.jpg"
+    }
+]
