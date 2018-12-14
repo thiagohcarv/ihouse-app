@@ -14,6 +14,8 @@ import { FunctionsProvider } from '../../providers/functions/functions';
 export class CadastroClientePage {
 
   private form: FormGroup
+  private thumb: string
+  private is_logged: boolean = false
 
   constructor(
     private api: ApiProvider,
@@ -33,10 +35,30 @@ export class CadastroClientePage {
   }
 
   ionViewDidLoad() {
+    if (this.storage.getUser()) {
+      this.is_logged = true
+      this.functions.loading()
+      this.api.get('user').then((data: any) => {
+        if (data.thumb) {
+          this.thumb = 'data:image/png;base64,'+data.thumb
+        }
+        this.form.get('name').setValue(data.name)
+        this.form.get('email').setValue(data.email)
+        this.form.get('address').setValue(data.address)
+        this.form.get('phone').setValue(data.phone)
 
+        this.form.get('password').clearValidators()
+        this.form.get('password').updateValueAndValidity()
+
+        this.form.get('confirm_password').clearValidators()
+        this.form.get('confirm_password').updateValueAndValidity()
+
+        this.functions.loader.dismiss()
+      }).catch(() => this.functions.loader.dismiss())
+    }
   }
 
-  save(){
+  register(){
     this.functions.loading()
     const data = this.form.value
     this.api.post('register', data).then(data => {
@@ -44,6 +66,24 @@ export class CadastroClientePage {
       this.functions.loader.dismiss()
       this.functions.message("Success! Registration salved!");
       this.navCtrl.setRoot('HomePage');
+    }).catch(() => this.functions.loader.dismiss())
+  }
+
+  save(){
+    this.functions.loading()
+    const data = this.form.value
+    delete data.password
+    delete data.confirm_password
+    this.api.put('user/update', data).then(res => {
+
+      let user = this.storage.getUser()
+      user.user.name = data.name
+      user.user.thumb = this.thumb
+      this.storage.setUser(user)
+
+      this.functions.loader.dismiss()
+      this.functions.message("Success! Update salved!");
+      this.navCtrl.pop();
     }).catch(() => this.functions.loader.dismiss())
   }
 

@@ -23,7 +23,7 @@ export class MensagensPage {
     private functions: FunctionsProvider
   ) { }
 
-  ionViewDidLoad() {
+  ionViewDidEnter() {
     this.functions.loading()
     let data: any = Object()
     if (this.navParams.data.job_id) {
@@ -37,7 +37,10 @@ export class MensagensPage {
   }
 
   showMessage(msg:any){
-    this.functions.showAlert(msg.title, msg.mensagem);
+    this.functions.showAlert(msg.content, msg.title);
   }
 
+  onAdd(){
+    this.navCtrl.push('MessageFormPage', {job_id: this.job_id})
+  }
 }

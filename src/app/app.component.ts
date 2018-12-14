@@ -17,6 +17,7 @@ import { StorageProvider } from '../providers/storage/storage';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
+  private thumb: string
   rootPage: any = HomePage;
 
   pages: Array<{title: string, component: any}>;
@@ -40,6 +41,9 @@ export class MyApp {
       { title: 'Settings', component: 'CadastroClientePage' }
     ];
 
+    if(this.storage.getUser()){
+      this.thumb = this.storage.getUser().user.thumb
+    }
   }
 
   initializeApp() {
