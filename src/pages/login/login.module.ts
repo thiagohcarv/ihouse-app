@@ -1,19 +1,13 @@
-import { HomePageModule } from '../home/home.module';
-import { CadastroClientePageModule } from '../cadastro-cliente/cadastro-cliente.module';
-
-
 import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
 import { LoginPage } from './login';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
-  declarations: [
-    LoginPage
-  ],
+  declarations: [LoginPage],
   imports: [
     IonicPageModule.forChild(LoginPage),
-    CadastroClientePageModule,
-    HomePageModule
+    TranslateModule.forChild()
   ],
 })
-export class LoginPageModule {}
+export class LoginPageModule { }

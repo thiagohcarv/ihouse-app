@@ -1,0 +1,60 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Invite</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content padding>
+  <div class="elevation-content">
+    <div class="title">You are invited</div>
+    <div class="title">Service Details</div>
+    <hr>
+    <div class="description-content" padding>
+      <ion-row>
+        <ion-col col-4>
+          <span class="description">Type:</span>
+        </ion-col>
+        <ion-col col-8>
+          <span class="description"><span>{{jobDetail.category.name}}</span></span>
+        </ion-col>
+      </ion-row>
+      <ion-row *ngIf="employer">
+        <ion-col col-4>
+          <span class="description">Adress:</span>
+        </ion-col>
+        <ion-col col-8>
+          <span class="description"><span>{{employer.address}}</span></span><br>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-4>
+          <span class="description">Time:</span>
+        </ion-col>
+        <ion-col col-8>
+          <span class="description"><span>${{jobDetail.category.value}},00</span></span><br>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-4>
+          <span class="description">Value:</span>
+        </ion-col>
+        <ion-col col-8>
+          <span class="description"><span>{{dateTime}}</span></span><br>
+        </ion-col>
+      </ion-row>
+    </div>
+    <hr>
+    <ion-row class="paid acept" padding>
+        <div class="paid-mode" (click)="aceptJob()">
+          <b>Acept</b>
+        </div>
+      </ion-row>
+    <ion-row class="paid decline" padding>
+      <div class="paid-mode" (click)="declineJob()">
+        <b>Decline</b>
+      </div>
+    </ion-row>
+  </div>
+  
+
+
+</ion-content>

@@ -1,0 +1,20 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <img src="assets/imgs/ihouse_logo.png" width="50%" alt="">
+  </ion-navbar>
+</ion-header>
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col col-6 *ngFor="let c of categories" (click)="onSelectCategory(c)">
+        <ion-avatar>
+          <img [src]="c.img" alt="">
+        </ion-avatar>
+        <div>{{c.name}}</div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

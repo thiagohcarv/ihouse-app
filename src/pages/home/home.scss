@@ -1,40 +1,33 @@
 page-home {
-
-    .content{
-            background-color: color($colors, verde);
-
-
-            .body{
-                background-color: #fff;
-                min-height: 98%;
-                height: auto;
-                box-shadow: 2px 2px 7px 0px #656565;
-                .item{
-                    background: transparent;
-                }
-
-            }
-        .topo-boas-vindas{
-            height: 20%;
+    .content-title {
+        & {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 16px;
+            text-align: center;
+            flex-direction: column;
         }
-
-        .menu-item-home{
-            border: solid 2px #f6f6f6;
-            border-radius: 5px;
-            height: 8em;
-
-            h3{
-                margin-top: 0;
-                font-size: 16px;
-            }
-
-            // img{
-            //     padding: 2em;
-            // }
-
+        b {
+            width: 100%;
+            font-size: 2rem;
         }
     }
-
-
-
+    .row ion-col.col {
+        & {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 16px;
+            border: 1px solid #dedede;
+            margin: 8px;
+            text-align: center;
+        }
+        img {
+            height: 4em;
+            width: 4em;
+            margin-bottom: 8px;
+        }
+    }
 }

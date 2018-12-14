@@ -1,0 +1,48 @@
+page-settings {
+    ion-avatar {
+        margin: auto;
+        & {
+            height: 10em;
+            width: 10em;
+            overflow: hidden;
+            border-radius: 100% !important;
+            background-size: cover!important;
+            border: 0.5em solid #f6f6f6;
+        }
+        img {
+            width: 100%;   
+        }
+    }
+    .list {
+        margin: 0;
+    }
+    .item.item-block {
+        .item-inner {
+            padding-right: 0;
+            border: 0;
+        }
+
+        .label {
+            & {
+                display: flex;
+                align-items: center;
+            }
+
+            span {
+                white-space: normal;
+                flex: 1;
+                width: 100%;
+            }
+
+            ion-icon {
+                color: #0abab5;
+            }
+        }
+    }
+    .row {
+        .col:last-child {
+            flex: none;
+            width: auto;
+        }
+    }
+}

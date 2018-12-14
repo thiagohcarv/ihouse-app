@@ -1,0 +1,13 @@
+page-messages {
+    .content {
+        background-color: color($colors, verde);
+        .body {
+            background-color: #fff;
+            min-height: 90%;
+            height: auto;
+            .item {
+                background: transparent;
+            }
+        }
+    }
+}

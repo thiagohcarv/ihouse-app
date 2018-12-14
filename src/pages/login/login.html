@@ -1,25 +1,35 @@
-<ion-content padding>
-  <div class="bloco-logo" padding text-center>
-    <img src="assets/imgs/splash_logo.png" alt="iHouse Service">
-  </div>
-
-  <form [formGroup]="form" class="form-default" padding (ngSubmit)="login()">
-    <ion-item no-lines>
-      <ion-input type="email" formControlName="email" placeholder="Email Adress" text-center></ion-input>
-    </ion-item>
-    <ion-item no-lines>
-      <ion-input type="password" formControlName="password" placeholder="Password" text-center></ion-input>
-    </ion-item>
-    <div margin-bottom text-center>
-      <h5>or</h5>
+<ion-content>
+  <button ion-button menuToggle clear>
+    <ion-icon name="menu"></ion-icon>
+  </button>
+  <ion-item class="body" no-lines>
+    <div class="bloco-logo" padding>
+      <ion-row>
+        <ion-col col-8>
+          <img src="assets/imgs/splash_logo.png" whi alt="">
+        </ion-col>
+      </ion-row>
     </div>
-    <ion-item no-lines>
-      <ion-input type="tel" placeholder="Zip Code" formControlName="zipcode" text-center></ion-input>
-    </ion-item>
-    <button ion-button round block type="submit" [disabled]="form.invalid">Login</button>
-  </form>
+    <div class="main-container" padding>
+      <ion-item no-lines>
+        <ion-input type="email" [(ngModel)]="email" placeholder="{{'EMAIL_ADDRESS' | translate}}"></ion-input>
+      </ion-item>
+      <ion-item no-lines>
+        <ion-input type="password" [(ngModel)]="password" placeholder="{{'PASSWORD' | translate}}"></ion-input>
+      </ion-item>
+      <div class="or-container">{{'OR' | translate}}</div>
+      <ion-item no-lines>
+        <ion-input type="tel" placeholder="{{'ZIP_CODE' | translate}}" [(ngModel)]="zipCode" disabled></ion-input>
+      </ion-item>
+      <button ion-button round large full (click)="onLogin()">{{'LOGIN' | translate}}</button>
+    </div>
+  </ion-item>
+  <ion-row class="row-buttons">
+    <ion-col>
+      <button ion-button clear (click)="onForgot()">{{'FORGOT_PASSWORD' | translate}}?</button>
+    </ion-col>
+    <ion-col>
+      <button ion-button clear (click)="onSingIn()">{{'REGISTER_HERE' | translate}}</button>
+    </ion-col>
+  </ion-row>
 </ion-content>
-<ion-footer text-center padding>
-  <button ion-button outline color="dark">Forgot password?</button>
-  <button ion-button outline color="dark" (click)="register()" >Register here</button>
-</ion-footer>

@@ -1,0 +1,10 @@
+<ion-header>
+  <ion-navbar>
+    <img src="assets/imgs/ihouse_logo.png" width="50%" alt="">
+  </ion-navbar>
+</ion-header>
+<ion-content>
+  <ion-tabs tabsPlacement="top">
+    <ion-tab root="SearchJobsListPage" [rootParams]="c" [tabTitle]="c.name" *ngFor="let c of categories"></ion-tab>
+  </ion-tabs>
+</ion-content>

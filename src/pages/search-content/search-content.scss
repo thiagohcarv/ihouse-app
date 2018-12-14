@@ -1,0 +1,47 @@
+page-search-content {
+    .content{
+      background-color: color($colors, verde);
+                
+            .body{
+                //background-color: #fff;
+                min-height: 90%;
+                height: auto;
+                .item{
+                    background: transparent;
+                }
+
+            }
+    }
+
+    ion-card {
+        position: relative;
+        text-align: center;
+
+        
+      }
+      
+      .fab-md{
+        background-color: transparent;
+        padding: 0;
+      }
+    
+      .card-title {
+        position: absolute;
+        top: 36%;
+        font-size: 2.0em;
+        width: 100%;
+        font-weight: bold;
+        color: rgb(255, 255, 255);
+        text-shadow: 1px 1px 7px rgb(70, 70, 70);
+      }
+    
+      .card-subtitle {
+        font-size: 1.0em;
+        position: absolute;
+        top: 52%;
+        width: 100%;
+        color: rgb(255, 255, 255);
+        text-shadow: 1px 1px 7px rgb(70, 70, 70);
+      }
+
+}
