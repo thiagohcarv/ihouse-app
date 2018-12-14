@@ -1,0 +1,76 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Settings</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+  <div class="elevation-content">
+    <ion-avatar (click)="onUpdatePhoto()">
+      <img [src]="photoURL" />
+    </ion-avatar>
+    <ion-list>
+      <!-- Name -->
+      <button ion-item icon-end *ngIf="!editName" (click)="onName()">
+        <span><b>Name:</b> {{name}}</span>
+        <ion-icon name="settings"></ion-icon>
+      </button>
+      <ion-row *ngIf="editName">
+        <ion-col>
+          <ion-item>
+            <ion-label>Name:</ion-label>
+            <ion-input [(ngModel)]="name" [value]="name"></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col>
+          <button ion-button (click)="onName()">save</button>
+        </ion-col>
+      </ion-row>
+      <!-- Address -->
+      <button ion-item icon-end *ngIf="!editAddress" (click)="onAddress()">
+        <span><b>Address:</b> {{address}}</span>
+        <ion-icon name="settings"></ion-icon>
+      </button>
+      <ion-row *ngIf="editAddress">
+        <ion-col>
+          <ion-item>
+            <ion-label>Address:</ion-label>
+            <ion-input [(ngModel)]="address" [value]="address"></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col>
+          <button ion-button (click)="onAddress()">save</button>
+        </ion-col>
+      </ion-row>
+      <!-- Phone -->
+      <button ion-item icon-end *ngIf="!editPhone" (click)="onPhone()">
+        <span><b>Phone:</b> {{phone}}</span>
+        <ion-icon name="settings"></ion-icon>
+      </button>
+      <ion-row *ngIf="editPhone">
+        <ion-col>
+          <ion-item>
+            <ion-label>Phone:</ion-label>
+            <ion-input mask="(99) 9999-9999" [(ngModel)]="phone" [value]="phone"></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col>
+          <button ion-button (click)="onPhone()">save</button>
+        </ion-col>
+      </ion-row>
+      <!-- password -->
+      <ion-row>
+        <ion-col>
+          <ion-item>
+            <ion-label>Password:</ion-label>
+            <ion-input type="password" [(ngModel)]="password" [value]="password"></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col>
+          <button ion-button (click)="onPassword()">save</button>
+        </ion-col>
+      </ion-row>
+    </ion-list>
+  </div>
+</ion-content>

@@ -1,0 +1,24 @@
+<ion-header>
+  <ion-navbar>
+    <img src="assets/imgs/ihouse_logo.png" width="50%" alt="">
+  </ion-navbar>
+</ion-header>
+<ion-content no-padding padding-left padding-right>
+  <div class="body" no-padding padding-left padding-right>
+    <h3 padding>When do you want us to come?</h3>
+
+    <ion-item padding>
+      <ion-label>Date</ion-label>
+      <ion-datetime displayFormat="MM/DD/YYYY" [(ngModel)]="date"></ion-datetime>
+    </ion-item>
+    <ion-item padding>
+      <ion-label>Start Time</ion-label>
+      <ion-datetime displayFormat="h:mm A" pickerFormat="h mm A" [(ngModel)]="time"></ion-datetime>
+    </ion-item>
+    <br>
+    <button ion-button icon-end round color="verde" block large (click)="onNext()">
+      Next
+      <ion-icon name="ios-arrow-forward"></ion-icon>
+    </button>
+  </div>
+</ion-content>

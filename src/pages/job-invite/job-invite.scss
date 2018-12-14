@@ -1,0 +1,54 @@
+page-job-invite {
+    .content {
+        background: #0abab5;
+    }
+    div.elevation-content {
+        & {
+            background: #fff;
+            padding: 16px;
+        }
+        div.title {
+            font-size: 2rem;
+            font-weight: bold;
+            text-align: center;
+            width: 100%;
+        }
+        div.description-content {
+            width: auto;
+            span {
+                width: auto;
+                &.description{
+                    font-size: 2rem;
+                    font-weight: bold;
+                    text-align: center;
+                    width: 100%;
+                    span{
+                        color: #0abab5;
+                    }
+                }
+            }
+        }
+        .paid{
+            margin: auto;
+            background-color: color($colors, primary);
+            width: 20em;
+            height: 4em;
+            border-radius: 4em;
+            margin-top: 1em;
+
+            &.acept{
+                background-color: color($colors, verde);
+            }
+            
+            &.decline{
+                background-color: color($colors, danger);
+            }
+
+            .paid-mode{
+                margin: auto;
+                color: color($colors, light);
+                font-size: 18px;
+            }
+        }
+    }
+}

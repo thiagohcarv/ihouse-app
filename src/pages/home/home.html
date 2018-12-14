@@ -1,0 +1,42 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <img src="assets/imgs/ihouse_logo.png" width="50%" alt="">
+  </ion-navbar>
+</ion-header>
+<ion-content padding>
+  <div *ngIf="isAutorized === 'false'" class="elevation-content">
+    <div class="content-title">
+      <b>{{'USER_BLOCK' | translate }}</b><br/>{{name}}
+      <p>{{'AWAIT' | translate}}</p>
+    </div>
+  </div>
+  <div *ngIf="isAutorized === 'true'" class="elevation-content">
+    <div class="content-title">
+      <b>{{'WELCOME' | translate }}</b><br/>{{name}}
+    </div>
+    <ion-row>
+      <ion-col (click)="onOfferJobs()">
+        <img src="assets/icon/offer-job.svg" />{{'OFFER_JOB' | translate }}
+      </ion-col>
+      <ion-col (click)="onSearchJobs()">
+        <img src="assets/icon/search-job.svg" />{{'SEARCH_JOB' | translate }}
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col (click)="onSettings()">
+        <img src="assets/icon/settings.svg" />{{'SETTINGS' | translate }}
+      </ion-col>
+      <ion-col (click)="onMyJobs()">
+        <img src="assets/icon/my-jobs.svg" />{{'MY_JOBS' | translate }}
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col (click)="onMensagens()">
+        <img src="assets/icon/messages.svg" />{{'MESSAGES' | translate }}
+      </ion-col>
+    </ion-row>
+  </div>
+</ion-content>

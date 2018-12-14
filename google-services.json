@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "984665681454",
+    "firebase_url": "https://tiago-ihouse.firebaseio.com",
+    "project_id": "tiago-ihouse",
+    "storage_bucket": "tiago-ihouse.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:984665681454:android:73ca6544c1a9e062",
+        "android_client_info": {
+          "package_name": "com.service.ihouse"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "984665681454-0n98gsusamerlbfes79ub31e76vp3lgs.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC4WV9Cbs1re64ZCR_ImRL1DWZC7WtXWEI"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

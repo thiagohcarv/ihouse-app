@@ -1,0 +1,23 @@
+<ion-menu [content]="content">
+  <ion-content class="menu">
+    <ion-select [(ngModel)]="language" interface="popover" (ionChange)="changeLanguage()">
+      <ion-option value="en">EN</ion-option>
+      <ion-option value="es">ESP</ion-option>
+      <ion-option value="pt-br">PT</ion-option>
+    </ion-select>
+    <ion-avatar *ngIf="rootPage == 'HomePage'">
+      <img [src]="photo" />
+    </ion-avatar>
+    <ion-list *ngIf="rootPage == 'HomePage' && isAutorized">
+      <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
+        {{p.title | translate}}
+      </button>
+      <button ion-button menuClose block color="light" round (click)="onLogout()">
+        <ion-icon name="power"></ion-icon>
+        {{'LOGOUT' | translate}}
+      </button>
+    </ion-list>
+  </ion-content>
+</ion-menu>
+<!-- Disable swipe-to-go-back because it's poor UX to combine STGB with side menus -->
+<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>

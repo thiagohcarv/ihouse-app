@@ -1,0 +1,46 @@
+page-register {
+    .content {
+        background-color: color($colors, verde);
+        color: #f6f6f6;
+        .body {
+            ion-avatar {
+                margin: auto;
+                & {
+                    height: 10em;
+                    width: 10em;
+                    overflow: hidden;
+                    border-radius: 100% !important;
+                    background-size: cover!important;
+                    border: 0.5em solid #f6f6f6;
+                }
+                img {
+                    width: 100%;   
+                }
+            }
+            background-color: #f6f6f6;
+            .item.item-block {
+                background: transparent;
+                padding: 8px 16px 0;
+                .item-inner {
+                    padding: 0;
+                    border: 0 !important;
+                    box-shadow: none !important;
+                }
+            }
+            .input-md {
+                border: solid 2px #f6f6f6;
+                background-color: #fff;
+                border-radius: 2em;
+                text-align: center;
+                .text-input-md {
+                    text-align: center;
+                }
+            }
+        }
+        .button {
+            width: calc(100% - 32px);
+            height: 4.8rem;
+            margin: 8px 16px;
+        }
+    }
+}
