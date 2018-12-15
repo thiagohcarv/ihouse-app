@@ -137,7 +137,9 @@ export class MyJobContentPage {
               location = 'geo://'+this.myJob.latitude+ ','+this.myJob.longitude
             }
 
-            this.socialSharing.shareViaWhatsAppToReceiver(this.myJob.employee.phone, '', null, location).then((data) => {
+            let phone = '+55'+this.myJob.employee.phone
+
+            this.socialSharing.shareViaWhatsAppToReceiver(phone, '', null, location).then((data) => {
               this.dialog.hideLoading()
               this.update()
             }).catch((error) => {
