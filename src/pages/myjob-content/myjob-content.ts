@@ -130,18 +130,15 @@ export class MyJobContentPage {
           this.geolocation.getCurrentPosition({ enableHighAccuracy: true }).then(pos => {
             this.myJob.latitude = pos.coords.latitude
             this.myJob.longitude = pos.coords.longitude
-            let location = ''
-            if (this.platform.is('ios')) {
-              location = 'maps://?q=' + this.myJob.latitude+ ','+this.myJob.longitude
-            } if (this.platform.is('android')) {
-              location = 'geo://'+this.myJob.latitude+ ','+this.myJob.longitude
-            }
-
+            const lat_long = this.myJob.longitude+','+this.myJob.latitude
+            const location = 'https://api.mapbox.com/v4/mapbox.streets-basic/pin-m-circle+E93939('+lat_long+')/'+lat_long+',16/300x300.png?access_token=pk.eyJ1IjoiamhvbmkwOCIsImEiOiJjanBwZDVzMGUwNnlwNDhudjNzb2FjbnB6In0.XpsfZQROikEW4r4SpJsnVA'
             let phone = '+55'+this.myJob.employee.phone
-
-            this.socialSharing.shareViaWhatsAppToReceiver(phone, '', null, location).then((data) => {
-              this.dialog.hideLoading()
-              this.update()
+            this.socialSharing.shareViaWhatsApp('', location).then(data=> {
+            // this.socialSharing.shareViaWhatsAppToReceiver(phone, '', location, location).then((data) => {
+              if (data) {
+                this.dialog.hideLoading()
+                this.update()
+              }
             }).catch((error) => {
               this.dialog.hideLoading()
               console.log('Error share location', error)

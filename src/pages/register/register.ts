@@ -58,7 +58,7 @@ export class RegisterPage {
 
   compareFn(e1: Category, e2: Category): boolean {
     return e1 && e2 ? e1.id === e2.id : e1 === e2;
-  }  
+  }
 
   onRegister(): void {
     if (this.password !== this.passwordConfirm) {
@@ -85,7 +85,7 @@ export class RegisterPage {
       mediaType: this.camera.MediaType.PICTURE
     }
     this.camera.getPicture(options).then((imageData) => {
-      this.photo = "data:image/jpeg;base64," + imageData;  
+      this.photo = "data:image/jpeg;base64," + imageData;
       this.base64.encodeFile(this.photo).then((imgBase64: string) => {
         console.log("encodeFile", imgBase64);
         this.imgBase64 = imgBase64;
@@ -107,7 +107,7 @@ export class RegisterPage {
       phone: this.phone,
       address: this.address,
       type: this.type,
-      urlPhoto: this.imgBase64,
+      urlPhoto: this.photo,
       ssn: this.ssn,
       rating: 5,
       uuid: '',
