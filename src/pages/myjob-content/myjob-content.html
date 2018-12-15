@@ -1,17 +1,9 @@
-<!--
-  Generated template for the MyJobContentPage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
-
-  <ion-navbar>
-    <!-- <ion-title>Job Detail</ion-title> -->
+  <ion-navbar text-center>
     <img src="assets/imgs/ihouse_logo.png" width="50%" alt="">
   </ion-navbar>
-
 </ion-header>
+
 <ion-content padding>
 
   <div class="container" padding>
@@ -76,40 +68,17 @@
       <div class="img" padding text-center *ngIf="myJob.urlPhoto">
         <img [src]="myJob.urlPhoto" width="150">
       </div>
-      <br>
-      <ion-row class="paid"  *ngIf="view" padding>
-        <div class="paid-mode" (click)="sendLocalization()">
-          <b>Send Localization</b>
-        </div>
-      </ion-row>
-      <br>
-      <ion-row class="paid"  *ngIf="view" padding>
-        <div class="paid-mode" (click)="sendMediation()">
-          <b>Mediation</b>
-        </div>
-      </ion-row>
-      <br>
-      <ion-row class="paid"  *ngIf="view" padding>
-        <div class="paid-mode" (click)="addPhoto()">
-          <b>Add Photo</b>
-        </div>
-      </ion-row>
-      <br>
-      <ion-row class="paid"  *ngIf="view" padding>
-        <div class="paid-mode" (click)="completeJob()">
-        <b>Complete Job</b>
+
+      <div *ngIf="view" class="buttons">
+        <button ion-button round block outline large (click)="sendLocalization()">Send Localization</button>
+        <button ion-button round block outline large (click)="sendMediation()">Mediation</button>
+        <button ion-button round block outline large (click)="addPhoto()">Add Photo</button>
+        <button ion-button round block outline large (click)="completeJob()">Complete Job</button>
       </div>
-    </ion-row>
     </div>
 
     <br>
-    <ion-row class="paid" *ngIf="!view" padding>
-        <div class="paid-mode" (click)="back()">
-        <b>Back</b>
-      </div>
-    </ion-row>
-
-
+    <button ion-button round block outline large *ngIf="!view" (click)="back()">Back</button>
   </div>
 
 </ion-content>

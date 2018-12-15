@@ -49,16 +49,10 @@
       </ion-row>
     </div>
     <hr>
-    <ion-row class="paid acept" padding>
-        <div class="paid-mode" (click)="aceptJob()">
-          <b>{{'ACCEPT' | translate }}</b>
-        </div>
-      </ion-row>
-    <ion-row class="paid decline" padding>
-      <div class="paid-mode" (click)="declineJob()">
-        <b>{{'DECLINE' | translate }}</b>
-      </div>
-    </ion-row>
+    <div class="buttons">
+      <button ion-button round block large margin-top margin-bottom color="verde" (click)="aceptJob()">{{'ACCEPT' | translate }}</button>
+      <button ion-button round block large color="danger" (click)="declineJob()">{{'DECLINE' | translate }}</button>
+    </div>
   </div>
 
 

@@ -20,17 +20,10 @@ page-myjob-content {
                 font-size: 16px;
             }
         }
-        .paid {
-            margin: auto;
-            border: solid 2px color($colors, primary);
-            width: 20em;
-            height: 4em;
-            border-radius: 4em;
-            .paid-mode {
-                margin: auto;
-                color: color($colors, primary);
-                font-size: 18px;
-            }
+        .button{
+            border-width: 2px;
+            text-transform: none;
+            margin-top: 15px;
         }
     }
 }

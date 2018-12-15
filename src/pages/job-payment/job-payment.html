@@ -1,23 +1,15 @@
-<!--
-  Generated template for the MyJobContentPage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
-
-  <ion-navbar>
-    <!-- <ion-title>Job Detail</ion-title> -->
+  <ion-navbar text-center>
     <img src="assets/imgs/ihouse_logo.png" width="50%" alt="">
   </ion-navbar>
-
 </ion-header>
+
 <ion-content padding>
 
   <div class="container" padding>
     <ion-item no-padding padding-top>
       <div align="center">
-        <h1>Mr. {{name}}</h1>
+        <h2>Mr. {{name}}</h2>
         <p>This was your job</p>
         <p *ngIf="paymentOK">Payment OK!</p>
       </div>
@@ -59,19 +51,13 @@
     <br>
     <div *ngIf="!paymentOK">
       <p>Pay with:</p>
-      <ion-row class="paid" padding>
-        <div class="paid-mode" (click)="onPayment()">
-          <b>PayPal</b>
-        </div>
-      </ion-row>
+      <div class="buttons">
+        <button ion-button round block large color="primary" (click)="onPayment()">PayPal</button>
+      </div>
     </div>
     <div *ngIf="paymentOK">
-        <p style="text-align: center">We are looking for a worker for your job</p>
-        <ion-row class="paid ok" padding>
-          <div class="paid-mode" (click)="paymentFinish()">
-            <b>Ok</b>
-          </div>
-        </ion-row>
+      <p style="text-align: center">We are looking for a worker for your job</p>
+      <button ion-button round block large color="verde" (click)="paymentFinish()">Ok</button>
     </div>
   </div>
 

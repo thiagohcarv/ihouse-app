@@ -1,5 +1,5 @@
 page-job-payment {
-    
+
     .content{
         height: 100%;
         width: 100%;
@@ -25,21 +25,11 @@ page-job-payment {
             }
         }
 
-        .paid{
-            margin: auto;
-            background-color: color($colors, primary);
-            width: 20em;
-            height: 4em;
-            border-radius: 4em;
-            
-            &.ok{
-                background-color: color($colors, verde);
-            }
-
-            .paid-mode{
-                margin: auto;
-                color: color($colors, light);
-                font-size: 18px;
+        .buttons{
+            margin: 0 10px;
+            .button{
+                font-weight: 700;
+                text-transform: none;
             }
         }
     }

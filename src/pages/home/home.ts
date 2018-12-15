@@ -32,9 +32,9 @@ export class HomePage {
   }
 
   ionViewWillEnter(){
-      this.storage.get('isAutorized').then((val)=>{
-        this.isAutorized = val;
-      });
+    this.storage.get('isAutorized').then((val)=>{
+      this.isAutorized = val;
+    });
   }
 
   async loadData(){

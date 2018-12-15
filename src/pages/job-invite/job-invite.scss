@@ -28,26 +28,11 @@ page-job-invite {
                 }
             }
         }
-        .paid{
-            margin: auto;
-            background-color: color($colors, primary);
-            width: 20em;
-            height: 4em;
-            border-radius: 4em;
-            margin-top: 1em;
-
-            &.acept{
-                background-color: color($colors, verde);
-            }
-
-            &.decline{
-                background-color: color($colors, danger);
-            }
-
-            .paid-mode{
-                margin: auto;
-                color: color($colors, light);
-                font-size: 18px;
+        .buttons{
+            margin: 0 10px;
+            .button{
+                font-weight: 700;
+                text-transform: none;
             }
         }
     }
