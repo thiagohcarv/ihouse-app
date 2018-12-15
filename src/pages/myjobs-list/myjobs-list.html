@@ -18,7 +18,7 @@
         <h1>{{job.category.name}}</h1>
         <ion-row>
           <ion-col>
-            <p>{{job.timestamp}}</p>
+            <p>{{job.timestamp|date:'dd/mm/yyyy hh:MM'}}</p>
           </ion-col>
           <ion-col>
             <ion-icon name="star" style="color: rgb(252, 214, 0);"></ion-icon>

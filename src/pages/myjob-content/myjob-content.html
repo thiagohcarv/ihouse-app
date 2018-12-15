@@ -76,11 +76,19 @@
       <div class="img" padding text-center *ngIf="myJob.urlPhoto">
         <img [src]="myJob.urlPhoto" width="150">
       </div>
+      <br>
       <ion-row class="paid"  *ngIf="view" padding>
         <div class="paid-mode" (click)="sendLocalization()">
           <b>Send Localization</b>
         </div>
       </ion-row>
+      <br>
+      <ion-row class="paid"  *ngIf="view" padding>
+        <div class="paid-mode" (click)="sendMediation()">
+          <b>Mediation</b>
+        </div>
+      </ion-row>
+      <br>
       <ion-row class="paid"  *ngIf="view" padding>
         <div class="paid-mode" (click)="addPhoto()">
           <b>Add Photo</b>

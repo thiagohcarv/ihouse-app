@@ -45,7 +45,18 @@ export class JobDatePage {
     this.dialog.showLoading();
     this.auth.getUser().subscribe((user) => {
       this.dialog.hideLoading();
-      let job: Job = { category: this.category, hasAccepted: false, timestamp: timestamp, paid: false, employee: null, employerID: "", hasCompleted: false, urlPhoto: '' };
+      let job: Job = {
+        category: this.category,
+        hasAccepted: false,
+        timestamp: timestamp,
+        paid: false,
+        employee: null,
+        employerID: null,
+        hasCompleted: false,
+        urlPhoto: null,
+        latitude: null,
+        longitude: null,
+      };
       this.navCtrl.push('JobPaymentPage', { id: user.uid, job: job });
     })
   }

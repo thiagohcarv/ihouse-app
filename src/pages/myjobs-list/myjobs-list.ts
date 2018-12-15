@@ -43,14 +43,18 @@ export class MyjobsListPage {
               this.dialog.hideLoading();
             }, (err) => {
               this.dialog.presentAlert(err.message);
-            });  
+            });
           }
         })
-      }      
+      }
     });
   }
 
   onVerDetalhes(job: Job): void {
-    this.navCtrl.push('MyJobContentPage', { job: job, user: this.userData });
+    let context:any = { job: job, user: this.userData }
+    if (this.userData.type == 'employer') {
+      context.view = 'false'
+    }
+    this.navCtrl.push('MyJobContentPage', context);
   }
 }

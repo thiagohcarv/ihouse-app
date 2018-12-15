@@ -6,9 +6,11 @@ import { Dialog } from './../../providers/dialog/dialog';
 import { Camera, CameraOptions } from '@ionic-native/camera';
 import { Base64 } from '@ionic-native/base64';
 import { Component } from '@angular/core';
-import { IonicPage, NavParams, NavController, ModalController, ViewController } from 'ionic-angular';
+import { IonicPage, NavParams, NavController, ModalController, ViewController, Platform, AlertController } from 'ionic-angular';
 import { Job } from '../../interfaces/job';
 import { Geolocation } from '@ionic-native/geolocation';
+import { SocialSharing } from '@ionic-native/social-sharing';
+import { Diagnostic } from '@ionic-native/diagnostic';
 
 @IonicPage()
 @Component({
@@ -31,7 +33,11 @@ export class MyJobContentPage {
     private camera: Camera,
     private dialog: Dialog,
     private geolocation: Geolocation,
-    private angularFireDB: AngularFireDatabase
+    private angularFireDB: AngularFireDatabase,
+    private socialSharing: SocialSharing,
+    private platform: Platform,
+    private diagnostic: Diagnostic,
+    private alertCtrl: AlertController
   ) {
     this.myJob = navParams.data.job;
     this.view = navParams.data.view == 'false' ? false : true;
@@ -106,14 +112,57 @@ export class MyJobContentPage {
   }
 
   sendLocalization(){
-    this.geolocation.getCurrentPosition().then(pos => {
-      this.myJob.latitude = pos.coords.latitude
-      this.myJob.longitude = pos.coords.longitude
+    if (this.platform.is('cordova')) {
+      this.diagnostic.isGpsLocationAvailable().then(data => {
+        if (!data) {
+          let alert = this.alertCtrl.create({
+            title: 'Attention!',
+            message: "You need to enable gps to continue.",
+            buttons: ['Cancel', {
+              text: 'Ok', handler: data => {
+                this.diagnostic.switchToLocationSettings()
+              }
+            }]
+          });
+          alert.present();
+        }else{
+          this.dialog.showLoading()
+          this.geolocation.getCurrentPosition({ enableHighAccuracy: true }).then(pos => {
+            this.myJob.latitude = pos.coords.latitude
+            this.myJob.longitude = pos.coords.longitude
+            let location = ''
+            if (this.platform.is('ios')) {
+              location = 'maps://?q=' + this.myJob.latitude+ ','+this.myJob.longitude
+            } if (this.platform.is('android')) {
+              location = 'geo://'+this.myJob.latitude+ ','+this.myJob.longitude
+            }
 
-      // this.update()
+            this.socialSharing.shareViaWhatsAppToReceiver(this.myJob.employee.phone, '', null, location).then((data) => {
+              this.dialog.hideLoading()
+              this.update()
+            }).catch((error) => {
+              this.dialog.hideLoading()
+              console.log('Error share location', error)
+              this.dialog.presentAlert('Error sharing location, try again.');
+            });
+          }).catch((error) => {
+            this.dialog.hideLoading()
+            console.log('Error getting location', error)
+            this.dialog.presentAlert('Error getting location, try again.');
+          });
+        }
+      })
+    }
+  }
+
+  sendMediation(){
+    const subject = 'Mediation'
+
+    this.socialSharing.shareViaEmail('', subject, ['ihouseservice.contato@gmail.com']).then(() => {
+
     }).catch((error) => {
-      console.log('Error getting location', error)
-      this.dialog.presentAlert('Error getting location, try again.');
+      console.log('Error share email', error)
+      this.dialog.presentAlert('Error sharing email, try again.');
     });
   }
 

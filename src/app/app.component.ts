@@ -11,7 +11,7 @@ import { Category } from './../interfaces/category';
 import { DatabaseProvider } from './../providers/database/database';
 import { Device } from '@ionic-native/device'
 import { TranslateService } from '@ngx-translate/core';
-import { ThrowStmt } from '@angular/compiler';
+// import { ThrowStmt } from '@angular/compiler';
 import {Storage } from '@ionic/storage';
 
 export interface PageInterface {
@@ -55,11 +55,11 @@ export class MyApp {
     private storage: Storage
   ) {
     platform.ready().then(() => {
-      statusBar.styleDefault();
-      statusBar.backgroundColorByHexString('#0abab5');
-      splashScreen.hide();
       this.initTranslate();
-      if (platform.is('mobile') && !platform.is('mobileweb')) {
+      if (platform.is('cordova')) {
+        statusBar.styleDefault();
+        statusBar.backgroundColorByHexString('#0abab5');
+        splashScreen.hide();
         screen.lock(screen.ORIENTATIONS.PORTRAIT);
       }
       auth.getUser().subscribe((user) => {

@@ -18,8 +18,8 @@ page-job-invite {
             span {
                 width: auto;
                 &.description{
-                    font-size: 2rem;
-                    font-weight: bold;
+                    font-size: 1.6rem;
+                    font-weight: normal;
                     text-align: center;
                     width: 100%;
                     span{
@@ -39,7 +39,7 @@ page-job-invite {
             &.acept{
                 background-color: color($colors, verde);
             }
-            
+
             &.decline{
                 background-color: color($colors, danger);
             }

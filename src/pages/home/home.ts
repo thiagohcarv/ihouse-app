@@ -79,7 +79,6 @@ export class HomePage {
   }
 
   onMyJobs(): void {
-    console.log(this.userID);
     this.navCtrl.push('MyjobsListPage', {userId: this.userID});
   }
 
