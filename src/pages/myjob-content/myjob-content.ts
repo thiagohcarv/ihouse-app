@@ -6,9 +6,9 @@ import { Dialog } from './../../providers/dialog/dialog';
 import { Camera, CameraOptions } from '@ionic-native/camera';
 import { Base64 } from '@ionic-native/base64';
 import { Component } from '@angular/core';
-import { DomSanitizer } from '@angular/platform-browser';
 import { IonicPage, NavParams, NavController, ModalController, ViewController } from 'ionic-angular';
 import { Job } from '../../interfaces/job';
+import { Geolocation } from '@ionic-native/geolocation';
 
 @IonicPage()
 @Component({
@@ -30,8 +30,8 @@ export class MyJobContentPage {
     private db: DatabaseProvider,
     private camera: Camera,
     private dialog: Dialog,
-    private angularFireDB: AngularFireDatabase,
-    private sanitizer: DomSanitizer
+    private geolocation: Geolocation,
+    private angularFireDB: AngularFireDatabase
   ) {
     this.myJob = navParams.data.job;
     this.view = navParams.data.view == 'false' ? false : true;
@@ -102,6 +102,18 @@ export class MyJobContentPage {
           })
         }
       })
+    });
+  }
+
+  sendLocalization(){
+    this.geolocation.getCurrentPosition().then(pos => {
+      this.myJob.latitude = pos.coords.latitude
+      this.myJob.longitude = pos.coords.longitude
+
+      // this.update()
+    }).catch((error) => {
+      console.log('Error getting location', error)
+      this.dialog.presentAlert('Error getting location, try again.');
     });
   }
 

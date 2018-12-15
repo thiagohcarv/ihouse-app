@@ -3,10 +3,11 @@ import { Camera } from '@ionic-native/camera';
 import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
 import { MyJobContentPage } from './myjob-content';
+import { Geolocation } from '@ionic-native/geolocation';
 
 @NgModule({
   declarations: [MyJobContentPage],
   imports: [IonicPageModule.forChild(MyJobContentPage)],
-  providers: [Camera, File]
+  providers: [Camera, File, Geolocation]
 })
 export class MyJobContentPageModule { }

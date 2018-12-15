@@ -10,4 +10,6 @@ export interface Job {
     paid: boolean;
     hasCompleted: boolean;
     urlPhoto: string;
+    latitude: number;
+    longitude: number;
 }
