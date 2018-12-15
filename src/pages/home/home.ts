@@ -28,7 +28,7 @@ export class HomePage {
     private navParams: NavParams,
     private storage: Storage
   ) {
-    this.loadData()  
+    this.loadData()
   }
 
   ionViewWillEnter(){

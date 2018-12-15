@@ -6,6 +6,7 @@ import { Dialog } from './../../providers/dialog/dialog';
 import { Camera, CameraOptions } from '@ionic-native/camera';
 import { Base64 } from '@ionic-native/base64';
 import { Component } from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
 import { IonicPage, NavParams, NavController, ModalController, ViewController } from 'ionic-angular';
 import { Job } from '../../interfaces/job';
 
@@ -17,10 +18,21 @@ import { Job } from '../../interfaces/job';
 export class MyJobContentPage {
   myJob: Job;
   view: boolean;
-  urlPhoto = '';
+  urlPhoto;
   userData: UserInterface;
 
-  constructor(navParams: NavParams, private viewCtrl: ViewController, private navCtrl: NavController, private base64: Base64,private auth: AuthProvider, private db: DatabaseProvider, private camera: Camera, private dialog: Dialog,private angularFireDB: AngularFireDatabase,) {
+  constructor(
+    private navParams: NavParams,
+    private viewCtrl: ViewController,
+    private navCtrl: NavController,
+    private base64: Base64,
+    private auth: AuthProvider,
+    private db: DatabaseProvider,
+    private camera: Camera,
+    private dialog: Dialog,
+    private angularFireDB: AngularFireDatabase,
+    private sanitizer: DomSanitizer
+  ) {
     this.myJob = navParams.data.job;
     this.view = navParams.data.view == 'false' ? false : true;
     this.userData = navParams.data.user;
@@ -36,7 +48,7 @@ export class MyJobContentPage {
 
   addPhoto(){
     const options: CameraOptions = {
-      quality: 100,
+      quality: 80,
       cameraDirection: 1,
       targetHeight: 400,
       targetWidth: 400,
@@ -48,8 +60,8 @@ export class MyJobContentPage {
       let photo = "data:image/jpeg;base64," + imageData;
       this.base64.encodeFile(photo).then((imgBase64: string) => {
         console.log("encodeFile", imgBase64);
-        this.myJob.urlPhoto = imgBase64;
-        this.update();
+        this.myJob.urlPhoto = imgBase64 || photo;
+        // this.update();
       }).catch(err => {
         console.log("Falha ao converte imagem");
         this.dialog.presentAlert(err);
@@ -60,13 +72,11 @@ export class MyJobContentPage {
   }
 
   completeJob(){
-    console.log(this.myJob)
-    if(!!this.urlPhoto || this.urlPhoto === ""){
+    if(!this.myJob.urlPhoto){
       this.dialog.presentAlert('Add a photo of your work!');
       return;
     }else{
       this.myJob.hasCompleted = true;
-      this.myJob.urlPhoto = this.urlPhoto;
       this.update();
     }
   }
@@ -82,8 +92,7 @@ export class MyJobContentPage {
     ).snapshotChanges(['child_added']).subscribe(res => {
       console.log('JOBS', res)
       res.forEach(j => {
-        if(j.payload.val()['hasAccepted'] == false && j.payload.val()['timestamp'] == this.myJob.timestamp && j.payload.val()['category'].id == this.myJob.category.id){
-          // this.myJob.hasCompleted = true;
+        if(j.payload.val()['timestamp'] == this.myJob.timestamp && j.payload.val()['category'].id == this.myJob.category.id){
           this.db.updateJob(j.key, this.myJob).then(()=>{
             this.dialog.hideLoading()
             this.navCtrl.popToRoot();

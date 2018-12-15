@@ -73,8 +73,8 @@
         <h1>{{myJob.employee.name}}</h1>
         <h1>{{myJob.employee.phone}}</h1>
       </ion-item>
-      <div class="img">
-          <img *ngIf="!!myJob.urlPhoto" [src]="myJob.urlPhoto" width="250">
+      <div class="img" padding text-center *ngIf="myJob.urlPhoto">
+        <img [src]="myJob.urlPhoto" width="150">
       </div>
       <ion-row class="paid"  *ngIf="view" padding>
         <div class="paid-mode" (click)="addPhoto()">

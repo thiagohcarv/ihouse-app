@@ -32,7 +32,7 @@ export class JobInvitePage {
 
   ionViewWillLoad() {
     this.jobDetail = this.navParams.data.job;
-    this.is_view = this.navParams.data.view === true || false;
+    this.is_view = this.navParams.data.view === false ? false : true;
     this.formatDate();
     this.db.getEmployerByID<UserInterface>(this.jobDetail.employerID).subscribe((res: UserInterface) =>{
       console.log(res);

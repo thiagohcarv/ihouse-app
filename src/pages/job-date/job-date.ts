@@ -35,8 +35,7 @@ export class JobDatePage {
       return;
     }
     const now: number = new Date().getTime();
-    let d = this.date.split('-');
-    const datetime: Date = new Date(parseInt(d[0]), parseInt(d[1]), parseInt(d[2]), parseInt(this.time));
+    const datetime = new Date(this.date+' '+this.time);
     const timestamp: number = datetime.getTime();
 
     if (timestamp < now) {
