@@ -37,11 +37,11 @@ export class JobDatePage {
     const now: number = new Date().getTime();
     const datetime = new Date();
     console.log(this.date)
-    datetime.setFullYear(this.date.split('-')[0])
-    datetime.setMonth(this.date.split('-')[1])
-    datetime.setDate(this.date.split('-')[2])
-    datetime.setHours(this.time.split(':')[0])
-    datetime.setMinutes(this.time.split(':')[1])
+    datetime.setFullYear(parseInt(this.date.split('-')[0]))
+    datetime.setMonth(parseInt(this.date.split('-')[1]))
+    datetime.setDate(parseInt(this.date.split('-')[2]))
+    datetime.setHours(parseInt(this.time.split(':')[0]))
+    datetime.setMinutes(parseInt(this.time.split(':')[1]))
     console.log(datetime)
     const timestamp: number = datetime.getTime();
 
