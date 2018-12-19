@@ -58,11 +58,11 @@
     </div>
     <div class="img" padding text-center *ngIf="myJob.urlPhoto || myJob.image_lat_long">
       <div *ngIf="myJob.urlPhoto">
-        <h4>Imagem</h4>
+        <h4>Photo</h4>
         <img [src]="myJob.urlPhoto" width="150">
       </div>
       <div *ngIf="myJob.image_lat_long">
-        <h4 margin-top>Localização</h4>
+        <h4 margin-top>Localization</h4>
         <img [src]="myJob.image_lat_long" width="150">
       </div>
     </div>
