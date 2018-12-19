@@ -35,7 +35,14 @@ export class JobDatePage {
       return;
     }
     const now: number = new Date().getTime();
-    const datetime = new Date(this.date+' '+this.time);
+    const datetime = new Date();
+    console.log(this.date)
+    datetime.setFullYear(this.date.split('-')[0])
+    datetime.setMonth(this.date.split('-')[1])
+    datetime.setDate(this.date.split('-')[2])
+    datetime.setHours(this.time.split(':')[0])
+    datetime.setMinutes(this.time.split(':')[1])
+    console.log(datetime)
     const timestamp: number = datetime.getTime();
 
     if (timestamp < now) {
