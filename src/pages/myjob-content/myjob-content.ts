@@ -113,44 +113,45 @@ export class MyJobContentPage {
 
   sendLocalization(){
     if (this.platform.is('cordova')) {
-      this.diagnostic.isGpsLocationAvailable().then(data => {
-        if (!data) {
+      // this.diagnostic.isGpsLocationAvailable().then(data => {
+      //   if (!data) {
           let alert = this.alertCtrl.create({
             title: 'Attention!',
-            message: "You need to enable gps to continue.",
+            message: "Make sure the GPS is turned on.",
             buttons: ['Cancel', {
               text: 'Ok', handler: data => {
-                this.diagnostic.switchToLocationSettings()
+                // this.diagnostic.switchToLocationSettings()
+                this.dialog.showLoading()
+                this.geolocation.getCurrentPosition({ enableHighAccuracy: true }).then(pos => {
+                  this.myJob.latitude = pos.coords.latitude
+                  this.myJob.longitude = pos.coords.longitude
+                  const lat_long = this.myJob.longitude+','+this.myJob.latitude
+                  const location = 'https://api.mapbox.com/v4/mapbox.streets-basic/pin-m-circle+E93939('+lat_long+')/'+lat_long+',16/300x300.png?access_token=pk.eyJ1IjoiamhvbmkwOCIsImEiOiJjanBwZDVzMGUwNnlwNDhudjNzb2FjbnB6In0.XpsfZQROikEW4r4SpJsnVA'
+                  let phone = '+55'+this.myJob.employee.phone
+                  this.socialSharing.shareViaWhatsApp('', location).then(data=> {
+                  // this.socialSharing.shareViaWhatsAppToReceiver(phone, '', location, location).then((data) => {
+                    if (data) {
+                      this.dialog.hideLoading()
+                      this.update()
+                    }
+                  }).catch((error) => {
+                    this.dialog.hideLoading()
+                    console.log('Error share location', error)
+                    this.dialog.presentAlert('Error sharing location, try again.');
+                  });
+                }).catch((error) => {
+                  this.dialog.hideLoading()
+                  console.log('Error getting location', error)
+                  this.dialog.presentAlert('Error getting location, try again.');
+                });
               }
             }]
           });
           alert.present();
-        }else{
-          this.dialog.showLoading()
-          this.geolocation.getCurrentPosition({ enableHighAccuracy: true }).then(pos => {
-            this.myJob.latitude = pos.coords.latitude
-            this.myJob.longitude = pos.coords.longitude
-            const lat_long = this.myJob.longitude+','+this.myJob.latitude
-            const location = 'https://api.mapbox.com/v4/mapbox.streets-basic/pin-m-circle+E93939('+lat_long+')/'+lat_long+',16/300x300.png?access_token=pk.eyJ1IjoiamhvbmkwOCIsImEiOiJjanBwZDVzMGUwNnlwNDhudjNzb2FjbnB6In0.XpsfZQROikEW4r4SpJsnVA'
-            let phone = '+55'+this.myJob.employee.phone
-            this.socialSharing.shareViaWhatsApp('', location).then(data=> {
-            // this.socialSharing.shareViaWhatsAppToReceiver(phone, '', location, location).then((data) => {
-              if (data) {
-                this.dialog.hideLoading()
-                this.update()
-              }
-            }).catch((error) => {
-              this.dialog.hideLoading()
-              console.log('Error share location', error)
-              this.dialog.presentAlert('Error sharing location, try again.');
-            });
-          }).catch((error) => {
-            this.dialog.hideLoading()
-            console.log('Error getting location', error)
-            this.dialog.presentAlert('Error getting location, try again.');
-          });
-        }
-      })
+        // }else{
+
+      //   }
+      // })
     }
   }
 

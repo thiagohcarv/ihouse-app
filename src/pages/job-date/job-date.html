@@ -9,11 +9,11 @@
 
     <ion-item padding>
       <ion-label>Date</ion-label>
-      <ion-datetime displayFormat="DD/MM/YYYY" [(ngModel)]="date"></ion-datetime>
+      <ion-datetime displayFormat="DD/MM/YYYY" [min]="min_date" [max]="max_date" [(ngModel)]="date"></ion-datetime>
     </ion-item>
     <ion-item padding>
       <ion-label>Start Time</ion-label>
-      <ion-datetime displayFormat="h:mm A" pickerFormat="h mm A" [(ngModel)]="time"></ion-datetime>
+      <ion-datetime displayFormat="h:mm A" [min]="min_time" pickerFormat="h mm A" [(ngModel)]="time"></ion-datetime>
     </ion-item>
     <br>
     <button ion-button icon-end round color="verde" block large (click)="onNext()">

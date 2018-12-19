@@ -14,7 +14,10 @@ import { AuthProvider } from '../../providers/auth/auth';
 export class JobDatePage {
   category: Category;
   date: string;
+  min_date: string;
+  max_date: string;
   time: string;
+  min_time: string;
 
   constructor(
     navParams: NavParams,
@@ -23,6 +26,9 @@ export class JobDatePage {
     private auth: AuthProvider,
     private database: DatabaseProvider) {
     this.category = navParams.data.category;
+    let now = new Date()
+    this.min_date = now.getFullYear() + '-' + (now.getMonth()+1) + '-' + now.getDate()
+    this.max_date = String(now.getFullYear()+5)
   }
 
   onNext() {
@@ -36,13 +42,11 @@ export class JobDatePage {
     }
     const now: number = new Date().getTime();
     const datetime = new Date();
-    console.log(this.date)
     datetime.setFullYear(parseInt(this.date.split('-')[0]))
     datetime.setMonth(parseInt(this.date.split('-')[1]))
     datetime.setDate(parseInt(this.date.split('-')[2]))
     datetime.setHours(parseInt(this.time.split(':')[0]))
     datetime.setMinutes(parseInt(this.time.split(':')[1]))
-    console.log(datetime)
     const timestamp: number = datetime.getTime();
 
     if (timestamp < now) {
