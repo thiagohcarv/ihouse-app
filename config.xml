@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.service.ihouse" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="com.service.ihouse" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>iHouse Service</name>
     <description>An awesome iHouse Service app.</description>
     <author email="freitas.jonathan08@gmail.com" href="https://jhonifreitas.github.io/portfolio/">Jonathan Freitas</author>
@@ -78,7 +78,6 @@
         <splash height="480" src="resources/ios/splash/Default~iphone.png" width="320" />
         <splash height="2732" src="resources/ios/splash/Default@2x~universal~anyany.png" width="2732" />
     </platform>
-    <allow-navigation href="http://10.0.0.103:8100" />
     <edit-config file="*-Info.plist" mode="merge" target="NSCameraUsageDescription">
         <string>need camera access to take pictures</string>
     </edit-config>
@@ -111,5 +110,6 @@
         <variable name="GEOLOCATION_USAGE_DESCRIPTION" value="To locate you" />
     </plugin>
     <plugin name="cordova.plugins.diagnostic" spec="4.0.10" />
-    <engine name="ios" spec="~4.5.5" />
+    <engine name="ios" spec="4.5.5" />
+    <plugin name="cordova-plugin-statusbar" spec="2.4.2" />
 </widget>
