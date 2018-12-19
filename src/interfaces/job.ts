@@ -12,4 +12,5 @@ export interface Job {
     urlPhoto: string;
     latitude: number;
     longitude: number;
+    image_lat_long: string;
 }

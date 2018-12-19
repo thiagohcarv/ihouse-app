@@ -56,6 +56,16 @@
         </div>
       </ion-row>
     </div>
+    <div class="img" padding text-center *ngIf="myJob.urlPhoto || myJob.image_lat_long">
+      <div *ngIf="myJob.urlPhoto">
+        <h4>Imagem</h4>
+        <img [src]="myJob.urlPhoto" width="150">
+      </div>
+      <div *ngIf="myJob.image_lat_long">
+        <h4 margin-top>Localização</h4>
+        <img [src]="myJob.image_lat_long" width="150">
+      </div>
+    </div>
     <div *ngIf="myJob.hasAccepted && !myJob.hasCompleted">
       <ion-item no-line>
         <ion-avatar item-start>
@@ -65,10 +75,6 @@
         <h3>{{myJob.employee.name}}</h3>
         <h3>{{myJob.employee.phone}}</h3>
       </ion-item>
-      <div class="img" padding text-center *ngIf="myJob.urlPhoto">
-        <img [src]="myJob.urlPhoto" width="150">
-      </div>
-
       <div *ngIf="view" class="buttons">
         <button ion-button round block outline large (click)="sendLocalization()">Send Localization</button>
         <button ion-button round block outline large (click)="sendMediation()">Mediation</button>

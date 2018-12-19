@@ -67,6 +67,7 @@ export class JobDatePage {
         urlPhoto: null,
         latitude: null,
         longitude: null,
+        image_lat_long: null
       };
       this.navCtrl.push('JobPaymentPage', { id: user.uid, job: job });
     })

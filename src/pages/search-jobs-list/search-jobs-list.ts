@@ -32,7 +32,12 @@ export class SearchJobsListPage {
     this.fetchJobs();
   }
   private fetchJobs(): void {
-    this.database.getJobsByCategory<Job>(this.category.id).subscribe((jobs: any) => {
+    this.database.getJobsByCategory<Job>(this.category.id).subscribe((jobs: any[]) => {
+      jobs = jobs.filter(val => {
+        if (!val.hasCompleted && !val.hasAccepted) {
+          return val
+        }
+      })
       jobs.forEach((j: Job)=>{
         if(j.employee.ssn != ''){
           this.database.getUserBySSN<UserInterface>(j.employee.ssn).subscribe((res: UserInterface[]) =>{

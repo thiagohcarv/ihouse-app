@@ -133,15 +133,10 @@ export class MyJobContentPage {
             const lat_long = this.myJob.longitude+','+this.myJob.latitude
             const location = 'https://api.mapbox.com/v4/mapbox.streets-basic/pin-m-circle+E93939('+lat_long+')/'+lat_long+',16/300x300.png?access_token=pk.eyJ1IjoiamhvbmkwOCIsImEiOiJjanBwZDVzMGUwNnlwNDhudjNzb2FjbnB6In0.XpsfZQROikEW4r4SpJsnVA'
             let phone = '+55'+this.myJob.employee.phone
-            
-            
+
+            this.myJob.image_lat_long = location
             this.dialog.hideLoading()
             this.update()
-            }).catch((error) => {
-              this.dialog.hideLoading()
-              console.log('Error share location', error)
-              this.dialog.presentAlert('Error sharing location, try again.');
-            });
           }).catch((error) => {
             this.dialog.hideLoading()
             console.log('Error getting location', error)
