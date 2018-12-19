@@ -135,8 +135,22 @@ export class MyJobContentPage {
             let phone = '+55'+this.myJob.employee.phone
 
             this.myJob.image_lat_long = location
-            this.dialog.hideLoading()
-            this.update()
+
+            this.angularFireDB.list("/jobs", (ref) =>
+              ref.orderByChild('employerID').equalTo(this.myJob.employerID)
+            ).snapshotChanges(['child_added']).subscribe(res => {
+              res.forEach(j => {
+                if(j.payload.val()['timestamp'] == this.myJob.timestamp && j.payload.val()['category'].id == this.myJob.category.id){
+                  this.db.updateJob(j.key, this.myJob).then(()=>{
+                    this.dialog.hideLoading()
+                  }).catch((e)=>{
+                    this.dialog.hideLoading()
+                    console.log(e);
+                    this.dialog.presentAlert('There was an error while trying to save photo.');
+                  })
+                }
+              })
+            });
           }).catch((error) => {
             this.dialog.hideLoading()
             console.log('Error getting location', error)

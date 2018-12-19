@@ -17,6 +17,8 @@
           <img *ngIf="!!job.category.img" [src]="job.category.img">
         </ion-avatar>
         <h1>{{job.category.name}}</h1>
+        <h5 no-margin *ngIf="job.hasCompleted" style="color: #10dc60;">Finished</h5>
+        <h5 no-margin *ngIf="!job.hasCompleted" style="color: #ffce00;">In Execution</h5>
         <ion-row>
           <ion-col>
             <p>{{job.timestamp|date:'dd/mm/yyyy hh:MM'}}</p>
