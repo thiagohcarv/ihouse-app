@@ -11,6 +11,7 @@ import { Job } from '../../interfaces/job';
 import { Geolocation } from '@ionic-native/geolocation';
 import { SocialSharing } from '@ionic-native/social-sharing';
 import { Diagnostic } from '@ionic-native/diagnostic';
+import { Message } from './../../interfaces/message';
 
 @IonicPage()
 @Component({
@@ -22,6 +23,7 @@ export class MyJobContentPage {
   view: boolean;
   urlPhoto;
   userData: UserInterface;
+  message: Message;
 
   constructor(
     private navParams: NavParams,
@@ -83,6 +85,20 @@ export class MyJobContentPage {
       return;
     }else{
       this.myJob.hasCompleted = true;
+      let id = 0
+      this.db.getMessages(this.userData.id).subscribe(val => {
+        if (val.length) {
+          id = val[val.length - 1]['id'] + 1
+        }
+      })
+      this.message = {
+        id: id || 0,
+        user: this.userData,
+        title: 'Job finish!',
+        body: 'You finished the job.'
+      }
+
+      this.db.createMessage(this.message)
       this.update();
     }
   }

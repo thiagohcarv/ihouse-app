@@ -1,3 +1,4 @@
+import { DatePipe } from '@angular/common';
 import { Job } from './../../interfaces/job';
 import { UserInterface } from './../../interfaces/user';
 import { Message } from './../../interfaces/message';
@@ -28,7 +29,8 @@ export class HomePage {
     private dialog: Dialog,
     private database: DatabaseProvider,
     private navParams: NavParams,
-    private storage: Storage
+    private storage: Storage,
+    private datepipe: DatePipe
   ) {
     this.loadData()
   }
@@ -57,38 +59,49 @@ export class HomePage {
     });
   }
 
-  load(userData: UserInterface){
+  async load(userData: UserInterface){
     if(userData && userData.type === 'employee'){
       if(userData.skills){
         userData.skills.forEach(e =>{
           this.dataBase.getJobsByCategory<Job>(e.id).subscribe((job) => {
             if(job){
               job.forEach(j => {
-                if(!j.employee.name)
-                  var id = 0
-                  this.database.getMessages(userData.id).subscribe(val => {
-                    if (val.length) {
-                      id = val[val.length - 1]['id'] + 1
-                    }
-                  })
-                  if (id) {
-                    this.message.id = id || 0
-                    this.message.user = userData
-                    this.message.title = 'New job for you!'
-                    this.message.body = 'You invited for new job.'
-                    this.message.job = j
-
-                    this.database.createMessage(this.message)
-                    this.dialog.presentConfirmInvite(this.message.title, j.category.name, ()=> {
-                      this.navCtrl.push('JobInvitePage', {job: j});
-                    });
-                  }
+                let now = this.datepipe.transform(new Date(), 'yyyy-MM-dd')
+                let time = this.datepipe.transform(j.timestamp, 'yyyy-MM-dd')
+                if(!j.employee.name){
+                  this.createMessage('New job for you!', 'You invited for new job.', j)
+                  this.dialog.presentConfirmInvite(this.message.title, j.category.name, ()=> {
+                    this.navCtrl.push('JobInvitePage', {job: j});
+                  });
+                  break;
+                }else if(j.employee.id == userData.id && time == now){
+                  this.createMessage('You have a job today!', 'You have a job accepted for today.', j)
+                }
               })
             }
           })
         })
       }
     }
+  }
+
+  createMessage(title, message, job=null){
+    let id = 0
+    this.database.getMessages(this.userData.id).subscribe(val => {
+      if (val.length) {
+        id = val[val.length - 1]['id'] + 1
+      }
+    })
+
+    this.message = {
+      id: id || 0,
+      user: this.userData,
+      title: title,
+      body: message,
+      job: job
+    }
+
+    this.database.createMessage(this.message)
   }
 
   onMensagens(): void {

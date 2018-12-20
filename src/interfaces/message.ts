@@ -6,5 +6,5 @@ export interface Message {
     user: UserInterface,
     title: string,
     body: string,
-    job?: Job,
+    job?: Job
 }

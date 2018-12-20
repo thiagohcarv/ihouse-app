@@ -43,10 +43,11 @@ export class JobDatePage {
     const now: number = new Date().getTime();
     const datetime = new Date();
     datetime.setFullYear(parseInt(this.date.split('-')[0]))
-    datetime.setMonth(parseInt(this.date.split('-')[1]))
+    datetime.setMonth(parseInt(this.date.split('-')[1]) -1)
     datetime.setDate(parseInt(this.date.split('-')[2]))
     datetime.setHours(parseInt(this.time.split(':')[0]))
     datetime.setMinutes(parseInt(this.time.split(':')[1]))
+
     const timestamp: number = datetime.getTime();
 
     if (timestamp < now) {

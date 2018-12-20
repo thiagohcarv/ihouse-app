@@ -2,6 +2,7 @@ import { HomePage } from './home';
 import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
 import { TranslateModule } from '@ngx-translate/core';
+import { DatePipe } from '@angular/common'
 
 @NgModule({
   declarations: [
@@ -11,5 +12,6 @@ import { TranslateModule } from '@ngx-translate/core';
     IonicPageModule.forChild(HomePage),
     TranslateModule.forChild()
   ],
+  providers: [DatePipe]
 })
 export class HomePageModule {}

@@ -33,16 +33,10 @@ export class JobInvitePage {
   ionViewWillLoad() {
     this.jobDetail = this.navParams.data.job;
     this.is_view = this.navParams.data.view === false ? false : true;
-    this.formatDate();
     this.db.getEmployerByID<UserInterface>(this.jobDetail.employerID).subscribe((res: UserInterface) =>{
       console.log(res);
       this.employer = res;
     })
-  }
-
-  formatDate(){
-    let date = new Date(this.jobDetail.timestamp);
-    this.dateTime = date.getDate() + '/' + date.getMonth() + '/' + date.getFullYear() + ' - ' + date.getHours() +':'+date.getMinutes();
   }
 
   aceptJob(){
