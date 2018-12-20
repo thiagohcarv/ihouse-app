@@ -1,5 +1,6 @@
 import { Job } from './../../interfaces/job';
 import { UserInterface } from './../../interfaces/user';
+import { Message } from './../../interfaces/message';
 import { Component } from '@angular/core';
 import { NavController, IonicPage, NavParams } from 'ionic-angular';
 import { AuthProvider } from '../../providers/auth/auth';
@@ -17,6 +18,7 @@ export class HomePage {
   public name: string = "";
   public isAutorized: string;
   public userData: UserInterface;
+  public message: Message;
   public userID: string;
 
   constructor(
@@ -41,31 +43,46 @@ export class HomePage {
     this.auth.getUser().subscribe((user) => {
       if(user){
         this.name = user.displayName || "";
-        this.userData = this.navParams.data;
         this.userID = user.uid;
-        if(this.userData == null){
+        if (this.navParams.data.id) {
+          this.userData = this.navParams.data;
+          this.load(this.userData);
+        }else{
           this.database.getUserByID<UserInterface>(user.uid).subscribe((userData) => {
             this.userData = userData;
-          });
+            this.load(this.userData);
+          }, err=> console.log(err));
         }
-        console.log("USER", this.userData);
-        this.load(this.userData);
       }
     });
   }
 
   load(userData: UserInterface){
-    if(userData.type === 'employee'){
+    if(userData && userData.type === 'employee'){
       if(userData.skills){
         userData.skills.forEach(e =>{
           this.dataBase.getJobsByCategory<Job>(e.id).subscribe((job) => {
             if(job){
               job.forEach(j => {
-                console.log("JOB HOME", j);
                 if(!j.employee.name)
-                  this.dialog.presentConfirmInvite('New job for you!', j.category.name, ()=> {
-                    this.navCtrl.push('JobInvitePage', {job: j});
-                  });
+                  var id = 0
+                  this.database.getMessages(userData.id).subscribe(val => {
+                    if (val.length) {
+                      id = val[val.length - 1]['id'] + 1
+                    }
+                  })
+                  if (id) {
+                    this.message.id = id || 0
+                    this.message.user = userData
+                    this.message.title = 'New job for you!'
+                    this.message.body = 'You invited for new job.'
+                    this.message.job = j
+
+                    this.database.createMessage(this.message)
+                    this.dialog.presentConfirmInvite(this.message.title, j.category.name, ()=> {
+                      this.navCtrl.push('JobInvitePage', {job: j});
+                    });
+                  }
               })
             }
           })

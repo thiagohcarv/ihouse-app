@@ -64,10 +64,8 @@ export class MyApp {
       }
       auth.getUser().subscribe((user) => {
         if (user && user.emailVerified) {
-          console.log(user);
           this.database.getUserByID<UserInterface>(user.uid).subscribe((userData) => {
             this.photo = !!userData.urlPhoto ? this.sanitizer.bypassSecurityTrustResourceUrl(userData.urlPhoto) : 'assets/icon/photo.svg';
-            console.log(user);
             this.storage.set('isAutorized', userData.isAutorized ? 'true' : 'false');
             this.isAutorized = userData.isAutorized;
           });

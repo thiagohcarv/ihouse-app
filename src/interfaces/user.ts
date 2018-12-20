@@ -1,4 +1,5 @@
 import { Category } from './category';
+
 export interface UserInterface {
     id?: string;
     name: string;
