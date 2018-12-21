@@ -85,17 +85,11 @@ export class MyJobContentPage {
       return;
     }else{
       this.myJob.hasCompleted = true;
-      let id = 0
-      this.db.getMessages(this.userData.id).subscribe(val => {
-        if (val.length) {
-          id = val[val.length - 1]['id'] + 1
-        }
-      })
       this.message = {
-        id: id || 0,
         user: this.userData,
         title: 'Job finish!',
-        body: 'You finished the job.'
+        body: 'You finished the job.',
+        visualized: false
       }
 
       this.db.createMessage(this.message)

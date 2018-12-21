@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Injectable()
 export class DatabaseProvider {
@@ -15,10 +16,18 @@ export class DatabaseProvider {
   createMessage<T>(message: T): void {
     this.db.list<T>(`messages/`).push(message);
   }
-  getMessages<T>(id: string): Observable<T[]> {
-    return this.db.list<T>("messages", (ref) =>
-      ref.orderByChild('user/id').equalTo(id)
-    ).valueChanges();
+  getMessages<T>(id: string){
+    return this.db.list("messages", ref => ref.orderByChild('user/id').equalTo(id))
+      .snapshotChanges()
+      .pipe(
+        map(changes => {
+          return changes.map(c => ({ key: c.payload.key, value: c.payload.val() }));
+        })
+      )
+  }
+  updateMessage<T>(id: string, params: any): Promise<void> {
+    const ref = this.db.object<T>(`messages/${id}`);
+    return ref.update(params);
   }
 
   // USER

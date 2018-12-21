@@ -62,6 +62,7 @@ export class HomePage {
   async load(userData: UserInterface){
     if(userData && userData.type === 'employee'){
       if(userData.skills){
+        let job_invite = null
         userData.skills.forEach(e =>{
           this.dataBase.getJobsByCategory<Job>(e.id).subscribe((job) => {
             if(job){
@@ -69,11 +70,13 @@ export class HomePage {
                 let now = this.datepipe.transform(new Date(), 'yyyy-MM-dd')
                 let time = this.datepipe.transform(j.timestamp, 'yyyy-MM-dd')
                 if(!j.employee.name){
-                  this.createMessage('New job for you!', 'You invited for new job.', j)
-                  this.dialog.presentConfirmInvite(this.message.title, j.category.name, ()=> {
-                    this.navCtrl.push('JobInvitePage', {job: j});
-                  });
-                  break;
+                  if (!job_invite) {
+                    job_invite = true
+                    this.createMessage('New job for you!', 'You invited for new job.', j)
+                    this.dialog.presentConfirmInvite('New job for you!', j.category.name, ()=> {
+                      this.navCtrl.push('JobInvitePage', {job: j});
+                    });
+                  }
                 }else if(j.employee.id == userData.id && time == now){
                   this.createMessage('You have a job today!', 'You have a job accepted for today.', j)
                 }
@@ -86,19 +89,12 @@ export class HomePage {
   }
 
   createMessage(title, message, job=null){
-    let id = 0
-    this.database.getMessages(this.userData.id).subscribe(val => {
-      if (val.length) {
-        id = val[val.length - 1]['id'] + 1
-      }
-    })
-
     this.message = {
-      id: id || 0,
       user: this.userData,
       title: title,
       body: message,
-      job: job
+      job: job,
+      visualized: false
     }
 
     this.database.createMessage(this.message)

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage } from 'ionic-angular';
+import { NavController, IonicPage } from 'ionic-angular';
 import { UserInterface } from './../../interfaces/user';
 import { AuthProvider } from '../../providers/auth/auth';
 import { Dialog } from '../../providers/dialog/dialog';
@@ -13,13 +13,14 @@ import { Message } from '../../interfaces/message';
 })
 export class MessagesPage {
 
-  mensagens: Message[] = [];
+  mensagens: any = [];
   userData: UserInterface;
 
   constructor(
     private dialog: Dialog,
     private auth: AuthProvider,
-    private database: DatabaseProvider
+    private navCtrl: NavController,
+    private database: DatabaseProvider,
   ) {
     this.auth.getUser().subscribe((user) => {
       if(user){
@@ -36,14 +37,24 @@ export class MessagesPage {
   load(){
     if (this.userData) {
       this.database.getMessages<Message>(this.userData.id).subscribe((res) => {
-        this.mensagens = res;
+        this.mensagens = res.filter((val:any) => {
+          if (!val.value.visualized) {
+            return val.value
+          }
+        })
       }, err => {
         console.log(err)
       });
     }
   }
 
-  onVerMensagemCompleta(msg: Message): void {
-    this.dialog.presentMessage(msg.title, msg.body);
+  onVerMensagemCompleta(msg: Message, key: string): void {
+    msg.visualized = true
+    this.database.updateMessage(key, msg)
+    this.dialog.presentConfirmInvite(msg.title, msg.body, ()=> {
+      if (msg.job) {
+        this.navCtrl.push('JobInvitePage', {job: msg.job});
+      }
+    });
   }
 }
